@@ -3,7 +3,7 @@ package se.edu.badgateway.pojo;
 import lombok.Data;
 
 @Data
-public class hospital {
+public class Hospital {
     private Integer id;
     private String hospitalName;
     private String hospitalPlace;

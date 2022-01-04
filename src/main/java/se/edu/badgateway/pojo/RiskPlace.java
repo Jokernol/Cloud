@@ -3,7 +3,7 @@ package se.edu.badgateway.pojo;
 import lombok.Data;
 
 @Data
-public class riskPlace {
+public class RiskPlace {
     private Integer id;
     private String x;
     private String y;
