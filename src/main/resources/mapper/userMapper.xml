@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="se.edu.zust.fang.dao.UserMapper">
+    <update id="addUser" parameterType="user">
+        insert into user (user_name, password, name ,intro, gender,
+                          province, city, regist_time, type, email, moblie, QQ, status) values
+        (#{userName},#{password},#{name},#{intro},#{gender},#{province},#{city},
+         #{registTime},1,#{email},#{mobile},#{QQ},1);
+    </update>
+
+    <select id="query" resultType="user">
+        SELECT *
+        FROM user
+        WHERE `user_name` = #{loginName}
+          AND `password` = #{password};
+    </select>
+
+
+    <select id="isExist" resultType="int">
+        SELECT count(*)
+        FROM user
+        WHERE user_name = #{userName};
+    </select>
+
+
+    <select id="getUsers" resultType="user">
+        select * from user where id in
+        <foreach collection="list" item="id" index="index"  open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+</mapper>
