@@ -28,6 +28,7 @@
         <%@ include file="../shared/messages.jsp"%>
 
         <rapcid:block name="content">
+
         </rapcid:block>
         <%@ include file="footer.jsp"%>
     </div>
