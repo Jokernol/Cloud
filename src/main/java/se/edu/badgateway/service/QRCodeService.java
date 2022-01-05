@@ -5,7 +5,7 @@ import se.edu.badgateway.utils.QRCodeUtil;
 
 @Service
 public class QRCodeService {
-    private static final String path = "src/main/webapp/qrcode/";
+    private static final String path = "src/main/webapp/public/static/qrcode/";
     private static final Integer onColorRed = 0xFFEE2C2C;
     private static final Integer onColorGrey = 0xFFBEBEBE;
     private static final Integer onColorGreen = 0xFF00EE76;

@@ -9,7 +9,6 @@ import se.edu.badgateway.pojo.DTO.RiskDataDTO;
 import se.edu.badgateway.service.RiskDataService;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class RiskDataController {
     //申请重新评估风险等级
     @GetMapping("evaluate")
     public ModelAndView evaluate(ModelAndView modelAndView){
-        modelAndView.setViewName("RiskDate/evaluate");
+        modelAndView.setViewName("RiskData/evaluate");
         return modelAndView;
     }
 
