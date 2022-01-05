@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller()
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UserController {
 
 
@@ -38,6 +38,7 @@ public class UserController {
 
     @GetMapping("regist")
     public String toRegist(){
+
         return "users/create";
     }
 

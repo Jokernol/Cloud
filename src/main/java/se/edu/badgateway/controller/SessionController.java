@@ -7,14 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import se.edu.badgateway.pojo.DTO.IndexRiskPlace;
-import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
 import se.edu.badgateway.pojo.DTO.LoginUser;
 import se.edu.badgateway.service.PlaceService;
 import se.edu.badgateway.service.UserService;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller()
 @RequestMapping("/session")

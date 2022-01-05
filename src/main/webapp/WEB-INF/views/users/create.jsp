@@ -11,7 +11,7 @@
             <div class="card-body">
                 <h6 style="color: #ed969e ">(注意:带*号为必填信息)</h6>
 
-                <form method="POST" action="${pageContext.request.contextPath}/User/regist">
+                <form method="POST" action="${pageContext.request.contextPath}/user/regist">
 
                     <div class="form-group">
                         <label for="name" >*姓名：</label>
