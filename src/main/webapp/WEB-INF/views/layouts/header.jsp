@@ -10,18 +10,18 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container ">
-        <a class="navbar-brand" href="/user/to_index">芳</a>
+        <a class="navbar-brand" href="/user/to_index">个人首页</a>
         <ul class="navbar-nav justify-content-end">
 
 
             <c:choose>
                 <c:when test="${sessionScope.user != null}">
-                    <li class="nav-item"><a class="nav-link" href="/concern/idols/${sessionScope.user.id}">推荐</a></li>
+<%--                    <li class="nav-item"><a class="nav-link" href="/concern/idols/${sessionScope.user.id}">推荐</a></li>--%>
 
                     <li class="nav-item"><a class="nav-link" href="/concern/list/-1">用户列表</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            ${sessionScope.user.userName}
+                            ${sessionScope.user.name}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 

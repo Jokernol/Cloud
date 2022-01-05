@@ -11,6 +11,7 @@ import se.edu.badgateway.pojo.DTO.LoginUser;
 import se.edu.badgateway.pojo.DTO.RegistUser;
 
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -39,14 +40,15 @@ public class UserService {
 
 
 
-    public Integer userLogin(LoginUser loginUser) {
+    public Integer userLogin(LoginUser loginUser, HttpSession session) {
         Map<String, Object> map = BeanUtils.beanToMap(loginUser);
-
         List<User> users = userMapper.selectByMap(map);
 
         if (users == null) {
             return -1;
         }
+
+        session.setAttribute("user",users.get(0));
         if(users.get(0).getType()==0){
             return 0;
         }else {

@@ -10,10 +10,10 @@
       <div class="card-body">
 
 
-        <form method="POST" action="/user/login">
+        <form method="POST" action="/session/login">
           <div class="form-group">
             <label for="loginName">账号</label>
-            <input type="text" name="userName" id="loginName" class="form-control" value="${requestScope.user.userName}" >
+            <input type="text" name="name" id="loginName" class="form-control" value="${requestScope.user.userName}" >
           </div>
 
           <div class="form-group">
@@ -33,7 +33,7 @@
 
         <hr>
 
-        <p>还没账号？<a href="/user/to_create">现在注册！</a></p>
+        <p>还没账号？<a href="/User/regist">现在注册！</a></p>
       </div>
     </div>
   </div>
