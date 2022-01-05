@@ -27,11 +27,5 @@ public class RiskDataService {
 
         riskDataMapper.insert(riskData);
 
-        Integer userId = riskDataDTO.getUserId();
-
-        User user = userMapper.selectById(userId);
-        user.setRiskRating("medium");
-
-        userMapper.updateById(user);
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 @NoArgsConstructor
-public class IndexRiskPlace {
+public class RiskPlaceDTO {
     private String x;
     private String y;
 }
