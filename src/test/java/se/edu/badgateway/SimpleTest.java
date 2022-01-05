@@ -51,15 +51,13 @@ public class SimpleTest {
     }
 
     @Test
-    public void testQRCode() throws Exception {
+    public void testQRCode() {
         // 存放在二维码中的内容
-        String text = "我是小铭";
-        // 嵌入二维码的图片路径
-        String imgPath = "G:/qrCode/dog.jpg";
+        String text = "hello";
         // 生成的二维码的路径及名称
-        String destPath = "jam.jpg";
+        String destPath = "src/main/webapp/qrcode/dog.jpg";
         //生成二维码
-        QRCodeUtil.encode(text, imgPath, destPath, true);
+        QRCodeUtil.encode(text, destPath, 0xFF00FF00);
         // 解析二维码
         String str = QRCodeUtil.decode(destPath);
         // 打印出解析出的内容
