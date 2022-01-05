@@ -1,6 +1,7 @@
 package se.edu.badgateway;
 
 import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
+import net.sf.cglib.beans.BeanCopier;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +10,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import se.edu.badgateway.mapper.UserMapper;
 import se.edu.badgateway.pojo.DO.User;
+import se.edu.badgateway.pojo.DTO.IndexHighRiskPeople;
 import se.edu.badgateway.pojo.DTO.LoginUser;
+import se.edu.badgateway.pojo.DTO.RegistUser;
+import se.edu.badgateway.service.UserService;
 
 import java.util.List;
 import java.util.Map;
@@ -22,6 +26,9 @@ public class SimpleTest {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserService userService;
+
     @Test
     public void test1() {
         List<User> users = userMapper.selectList(null);
@@ -31,10 +38,8 @@ public class SimpleTest {
 
     @Test
     public void testAddUser() {
-        LoginUser loginUser = new LoginUser("admin", "admin");
 
-        Map<String, Object> map = BeanUtils.beanToMap(loginUser);
-
-        userMapper.selectByMap(map);
+        List<IndexHighRiskPeople> indexHighRiskPeople= userService.getAllHighRiskPeople();
+        System.out.println(indexHighRiskPeople);
     }
 }
