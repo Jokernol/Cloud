@@ -8,15 +8,18 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import se.edu.badgateway.mapper.ChatMapper;
 import se.edu.badgateway.mapper.RiskDataMapper;
 import se.edu.badgateway.mapper.RiskPlaceMapper;
 import se.edu.badgateway.mapper.UserMapper;
+import se.edu.badgateway.pojo.DO.Chat;
 import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.RiskPlace;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.LoginUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
 import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
+import se.edu.badgateway.service.ChatService;
 import se.edu.badgateway.service.InfoService;
 import se.edu.badgateway.service.PlaceService;
 import se.edu.badgateway.service.RiskDataService;
@@ -43,6 +46,12 @@ public class SimpleTest {
 
     @Autowired
     private RiskDataMapper riskDataMapper;
+
+    @Autowired
+    private ChatMapper chatMapper;
+
+    @Autowired
+    private ChatService chatService;
 
     @Test
     public void test1() {
@@ -137,6 +146,25 @@ public class SimpleTest {
         List<RiskDataDTO> riskDataDTOList=new LinkedList<RiskDataDTO>();
         riskDataDTOList = riskDataService.getAllRiskDataDto();
         System.out.println(riskDataDTOList);
+    }
+
+    @Test
+    public void testGetChetRecords(){
+        List<Chat> senderIds= (chatMapper.selectList(new QueryWrapper<Chat>()
+                .select("sender_id")
+                .eq("receiver_id",1)
+                .eq("is_read",0)
+                .groupBy("sender_id")));
+
+
+        System.out.println(senderIds);
+    }
+
+
+    @Test
+    public  void testGetFollowUsers(){
+        List<User> users = chatService.getFollowUsers();
+        System.out.println(users);
     }
 }
 

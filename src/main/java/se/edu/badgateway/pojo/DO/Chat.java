@@ -1,8 +1,14 @@
 package se.edu.badgateway.pojo.DO;
 
-import java.time.LocalDate;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class chat {
+import java.time.LocalDate;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Chat {
     private int id;
     private int senderId;
     private int receiverId;

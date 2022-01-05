@@ -37,7 +37,7 @@ public class RiskDataService {
 
     public List<RiskDataDTO> getAllRiskDataDto(){
         List<RiskData> riskDataList = riskDataMapper.selectList(null);
-        List<RiskDataDTO> riskDataDTOS=new ArrayList<>();
+        List<RiskDataDTO> riskDataDTOS;
         riskDataDTOS = JSON.parseArray(JSON.toJSONString(riskDataList), RiskDataDTO.class);
         return  riskDataDTOS;
 
