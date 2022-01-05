@@ -7,13 +7,16 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import se.edu.badgateway.mapper.InfoMapper;
 import se.edu.badgateway.mapper.UserMapper;
+import se.edu.badgateway.pojo.DO.Info;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.LoginUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
 import se.edu.badgateway.service.RiskDataService;
 import se.edu.badgateway.utils.QRCodeUtil;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +29,8 @@ public class SimpleTest {
     private UserMapper userMapper;
     @Autowired
     private RiskDataService riskDataService;
+    @Autowired
+    private InfoMapper infoMapper;
 
     @Test
     public void test1() {
@@ -62,5 +67,12 @@ public class SimpleTest {
         String str = QRCodeUtil.decode(destPath);
         // 打印出解析出的内容
         System.out.println(str);
+    }
+
+    @Test
+    public void testInfo() {
+        Info info = new Info();
+        info.setTime(LocalDateTime.now());
+        infoMapper.insert(info);
     }
 }

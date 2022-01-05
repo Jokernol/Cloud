@@ -1,7 +1,6 @@
 package se.edu.badgateway.controller;
 
 
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import se.edu.badgateway.pojo.DTO.IndexHighRiskPeople;
-import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
 import se.edu.badgateway.pojo.DTO.RegistUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
+import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
 import se.edu.badgateway.service.PlaceService;
 import se.edu.badgateway.service.RiskDataService;
 import se.edu.badgateway.service.UserService;
@@ -113,7 +112,6 @@ public class UserController {
         return modelAndView;
 
     }
-
 
 
 
