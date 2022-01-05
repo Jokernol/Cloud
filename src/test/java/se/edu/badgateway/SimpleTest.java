@@ -5,27 +5,27 @@ import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import se.edu.badgateway.mapper.InfoMapper;
 import se.edu.badgateway.mapper.RiskDataMapper;
 import se.edu.badgateway.mapper.RiskPlaceMapper;
 import se.edu.badgateway.mapper.UserMapper;
-import se.edu.badgateway.pojo.DO.Info;
 import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.RiskPlace;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.LoginUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
 import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
+import se.edu.badgateway.service.InfoService;
 import se.edu.badgateway.service.PlaceService;
 import se.edu.badgateway.service.RiskDataService;
 import se.edu.badgateway.utils.QRCodeUtil;
 
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"classpath:applicationContext.xml"})
@@ -37,7 +37,7 @@ public class SimpleTest {
     @Autowired
     private RiskDataService riskDataService;
     @Autowired
-    private InfoMapper infoMapper;
+    private InfoService infoService;
     @Autowired
     private RiskPlaceMapper riskPlaceMapper;
 
@@ -83,9 +83,7 @@ public class SimpleTest {
 
     @Test
     public void testInfo() {
-        Info info = new Info();
-        info.setTime(LocalDateTime.now());
-        infoMapper.insert(info);
+        infoService.getInfoList().forEach(System.out::println);
     }
 
     @Test

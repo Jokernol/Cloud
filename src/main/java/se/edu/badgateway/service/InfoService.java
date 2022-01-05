@@ -1,5 +1,6 @@
 package se.edu.badgateway.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +31,6 @@ public class InfoService {
     }
 
     public List<Info> getInfoList() {
-        return infoMapper.selectList(null);
+        return infoMapper.selectList(new QueryWrapper<Info>().orderByDesc("time"));
     }
 }

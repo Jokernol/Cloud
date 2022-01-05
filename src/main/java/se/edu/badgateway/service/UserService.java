@@ -6,16 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import se.edu.badgateway.mapper.RiskDataMapper;
 import se.edu.badgateway.mapper.UserMapper;
-import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.IndexHighRiskPeople;
 import se.edu.badgateway.pojo.DTO.LoginUser;
 import se.edu.badgateway.pojo.DTO.RegistUser;
-import se.edu.badgateway.pojo.DTO.RiskDataDTO;
-
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
