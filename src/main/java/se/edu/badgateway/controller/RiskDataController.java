@@ -9,8 +9,6 @@ import se.edu.badgateway.pojo.DTO.RiskDataDTO;
 import se.edu.badgateway.service.RiskDataService;
 
 import javax.annotation.Resource;
-import java.util.LinkedList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/riskData")
@@ -39,9 +37,7 @@ public class RiskDataController {
 
     @GetMapping("getAllRiskData")
     public ModelAndView getAllRiskData(ModelAndView modelAndView){
-        List<RiskDataDTO> riskDataDTOs = new LinkedList<RiskDataDTO>();
-        riskDataDTOs = riskDataService.getAllRiskDataDto();
-        modelAndView.addObject("riskDataDTOs",riskDataDTOs);
+        modelAndView.addObject("map",riskDataService.getAllRiskDataDto());
         modelAndView.setViewName("allRiskDataDTOs");
         return modelAndView;
 

@@ -14,10 +14,7 @@ import se.edu.badgateway.mapper.UserMapper;
 import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.RiskPlace;
 import se.edu.badgateway.pojo.DO.User;
-import se.edu.badgateway.pojo.DTO.LoginUser;
-import se.edu.badgateway.pojo.DTO.RegistUser;
-import se.edu.badgateway.pojo.DTO.RiskDataDTO;
-import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
+import se.edu.badgateway.pojo.DTO.*;
 import se.edu.badgateway.service.InfoService;
 import se.edu.badgateway.service.PlaceService;
 import se.edu.badgateway.service.RiskDataService;
@@ -108,7 +105,10 @@ public class SimpleTest {
         System.out.println(num);
     }
 
-
+    @Test
+    public void testRiskData() {
+        System.out.println(riskDataService.getAllRiskDataDto());
+    }
 
     @Test
     public void testAddPlace(){
@@ -149,8 +149,8 @@ public class SimpleTest {
     @Test
     public void testGetAllRiskDataDto(){
         List<RiskDataDTO> riskDataDTOList=new LinkedList<RiskDataDTO>();
-        riskDataDTOList = riskDataService.getAllRiskDataDto();
-        System.out.println(riskDataDTOList);
+        Map<UserDTO, RiskDataDTO> map = riskDataService.getAllRiskDataDto();
+        System.out.println(map);
     }
 }
 

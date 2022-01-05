@@ -69,8 +69,7 @@ public class UserController {
 
     @GetMapping("showAuditDeclaration")
     public String auditDeclaration(RedirectAttributes attr){
-        List<RiskDataDTO> riskDataDTOs= riskDataService.getAllRiskDataDto();
-        attr.addFlashAttribute("riskDataDTOs",riskDataDTOs);
+        attr.addFlashAttribute("riskDataDTOs", riskDataService.getAllRiskDataDto());
         return "admin/auditDeclaration";
     }
 
