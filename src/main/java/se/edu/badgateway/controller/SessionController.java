@@ -19,13 +19,13 @@ import java.util.List;
 public class SessionController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    PlaceService placeService;
+    private PlaceService placeService;
 
     @PostMapping(value = "/login")
-    public ModelAndView userLogin(LoginUser loginUser, ModelAndView modelAndView,HttpServletRequest req,HttpSession session){
+    public ModelAndView userLogin(LoginUser loginUser, ModelAndView modelAndView,HttpSession session){
         Integer result=userService.userLogin(loginUser);
         List<IndexRiskPlace> indexRiskPlaces=placeService.getIndexRiskPlace();
         switch (result) {
