@@ -38,12 +38,39 @@ public class UserController {
 
     @GetMapping("regist")
     public String toRegist(){
-
         return "users/create";
     }
 
+
+
+
+    @GetMapping("showGetAllHighRiskPeople")
+    public String toGetAllHighRiskPeople(RedirectAttributes attr){
+        List<IndexHighRiskPeople> indexHighRiskPeople= userService.getAllHighRiskPeople();
+        attr.addFlashAttribute("indexHighRiskPeople",indexHighRiskPeople);
+        return "admin/allHighRiskPeople";
+    }
+
+
+
+
+    @GetMapping("showAuditDeclaration")
+    public String auditDeclaration(RedirectAttributes attr){
+        List<RiskDataDTO> riskDataDTOs= riskDataService.getAllRiskDataDto();
+        attr.addFlashAttribute("riskDataDTOs",riskDataDTOs);
+        return "admin/auditDeclaration";
+    }
+
+
+
+
+
+
+
+
+
     @PostMapping("/regist")
-    public ModelAndView userRegist(RedirectAttributes attr, RegistUser registUser, ModelAndView modelAndView, HttpSession session){
+    public ModelAndView userRegist(RedirectAttributes attr, RegistUser registUser, ModelAndView modelAndView){
         userService.userRegist(registUser);
         attr.addFlashAttribute("msg","success");
         attr.addFlashAttribute("info","注册成功");
@@ -64,15 +91,11 @@ public class UserController {
 
 
     @GetMapping("getAllHighRiskPeople")
-    public ModelAndView getAllHighRiskPeople(ModelAndView modelAndView){
-        List<IndexHighRiskPeople> indexHighRiskPeople= userService.getAllHighRiskPeople();
-        modelAndView.addObject("indexHighRiskPeople",indexHighRiskPeople);
-        modelAndView.setViewName("allHighRiskPeople");
+    public ModelAndView getAllHighRiskPeople(ModelAndView modelAndView,RedirectAttributes attr){
+        modelAndView.setViewName("redirect:/user/showGetAllHighRiskPeople");
         return modelAndView;
 
     }
-
-
 
 
 
@@ -80,46 +103,10 @@ public class UserController {
     @RequestMapping("auditDeclaration")
     public ModelAndView auditDeclaration(ModelAndView modelAndView, @Param("userId") String userId,@Param("riskRating") String riskRating){
         userService.auditDeclaration(userId,riskRating);
-        List<RiskDataDTO> riskDataDTOs= userService.getAllRiskDataDto();
-        modelAndView.addObject("riskDataDTOs",riskDataDTOs);
-        modelAndView.setViewName("allRiskDataDTOs");
+        modelAndView.setViewName("redirect:/user/showAuditDeclaration");
         return modelAndView;
     }
 
-
-
-
-    @PostMapping("addRiskPlace")
-    public ModelAndView addRiskPlace(ModelAndView modelAndView, RiskPlaceDTO riskPlaceDTO, @Param("intro") String intro){
-        placeService.addRiskPlace(riskPlaceDTO,intro);
-        List<RiskPlaceDTO> riskPlaceDTOS =placeService.getIndexRiskPlace();
-        modelAndView.addObject("riskPlaceDTOS",riskPlaceDTOS);
-        modelAndView.setViewName("adminHome");
-        return modelAndView;
-
-    }
-
-
-    @DeleteMapping("deleteRiskPlace")
-    public ModelAndView deleteRiskPlace(ModelAndView modelAndView,RiskPlaceDTO riskPlaceDTO){
-        placeService.deleteRiskPlace(riskPlaceDTO);
-        List<RiskPlaceDTO> riskPlaceDTOS =placeService.getIndexRiskPlace();
-        modelAndView.addObject("riskPlaceDTOS",riskPlaceDTOS);
-        modelAndView.setViewName("adminHome");
-        return modelAndView;
-    }
-
-
-
-
-    @GetMapping("getAllRiskData")
-    public ModelAndView getAllRiskData(ModelAndView modelAndView){
-        List<RiskDataDTO> riskDataDTOs= userService.getAllRiskDataDto();
-        modelAndView.addObject("riskDataDTOs",riskDataDTOs);
-        modelAndView.setViewName("allRiskDataDTOs");
-        return modelAndView;
-
-    }
 
 
     @GetMapping("/index")

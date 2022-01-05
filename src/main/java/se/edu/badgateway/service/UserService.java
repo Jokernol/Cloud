@@ -44,14 +44,7 @@ public class UserService {
         return indexHighRiskPeople;
     }
 
-    public List<RiskDataDTO> getAllRiskDataDto(){
-        final BeanCopier beanCopier = BeanCopier.create(RiskDataDTO.class,RiskData.class, false);
-        List<RiskData> riskDataList= riskDataMapper.selectList(null);
-        List<RiskDataDTO> riskDataDTOS=new ArrayList<>();
-        beanCopier.copy(riskDataDTOS,riskDataList,null);
-        return  riskDataDTOS;
 
-    }
 
 
     public void auditDeclaration(String userId,String riskRating){
