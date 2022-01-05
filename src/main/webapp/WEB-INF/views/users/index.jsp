@@ -14,7 +14,7 @@
                         <strong>提示:</strong> 您还为申请小区疫情码，请点击申请
                     </div>
                     <br>
-                    <a href="/pictures/to_upload">
+                    <a href="/riskData/add">
                         <label class="form-control btn btn-info" style="width: 200px;" >申请</label>
                     </a>
                     <hr>
@@ -33,9 +33,15 @@
                         </div>
 
                         <br>
-                        <a href="/pictures/to_upload">
+                        <a href="/riskData/evaluate">
                             <label class="form-control btn btn-info" style="width: 200px;" >申请重新评估等级</label>
                         </a>
+                    </c:if>
+                    <c:if test="${sessionScope.user.riskRating == 2 && sessionScope.user.healthCodeType < 1}">
+                        <div class="alert alert-success">
+                            <strong>提示:</strong> 您的风险较低，但出现请注意安全，请避开高风险地区(本系统可查看风险分布)
+                        </div>
+                        <br>
                     </c:if>
 
                     <a href="/pictures/to_upload">
@@ -47,46 +53,31 @@
             </section>
             <h4>最近通知</h4>
             <hr>
-            <ul class="list-unstyled">
+            <c:forEach items="${requestScope.infoList}" var="info" >
+                <ul class="list-unstyled">
 
                     <li class="media mt-4 mb-4">
-                        <a href="{{ route('users.show', $user->id )}}">
-                            <img src="/upload/static/Avatar/{{$user->name.'.jpg'}}" onerror="this.src='../../../public/static/0.jpg'" alt="{{ $user->name }}" class="mr-3 gravatar"/>
+                        <a href="">
+                            <img src="../../../public/static/Avatar/1.jpg" onerror="this.src='../../../public/static/1.jpg'" alt="{{ $user->name }}" class="mr-3 gravatar"/>
                             <h6 class="mt-0 mb-1" style="color: black">管理员</h6>
                         </a>
                         <div class="media-body">
-                            <h5 class="mt-0 mb-1">标题<small>/时间</small></h5>
-                            通知通知通知
+                            <h5 class="mt-0 mb-1">${info.title}<small>/${info.time}</small></h5>
+                                ${info.description}
                         </div>
                     </li>
-            </ul>
-            <ul class="list-unstyled">
-
-                <li class="media mt-4 mb-4">
-                    <a href="{{ route('users.show', $user->id )}}">
-                        <img src="/upload/static/Avatar/{{$user->name.'.jpg'}}" onerror="this.src='../../../public/static/fang.jpg'" alt="{{ $user->name }}" class="mr-3 gravatar"/>
-                        <h6 class="mt-0 mb-1" style="color: black">管理员</h6>
-                    </a>
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">标题<small>/时间</small></h5>
-                        通知通知通知
-                    </div>
-                    <c:if test="${sessionScope.user.type == 0}">
-                        <form action="{{ route('statuses.destroy', $status->id) }}" method="POST" onsubmit="return confirm('确定删除?');">
-                            <button type="submit" class="btn btn-sm btn-danger">删除</button>
-                        </form>
-                    </c:if>
-                </li>
-            </ul>
+                </ul>
+            </c:forEach>
         </div>
         <aside class="col-md-4">
             <section class="user_info">
                 <%@ include file="../shared/user_info.jsp"%>
             </section>
-            <section class="stats mt-2">
+            <section class="stats mr-4">
                 <%@ include file="../shared/stats.jsp"%>
             </section>
         </aside>
+
     </div>
 </rapid:override>
 <%@include file="../layouts/default.jsp"%>

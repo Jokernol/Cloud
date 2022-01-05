@@ -10,14 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.IndexHighRiskPeople;
 import se.edu.badgateway.pojo.DTO.RegistUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
 import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
+import se.edu.badgateway.service.InfoService;
 import se.edu.badgateway.service.PlaceService;
 import se.edu.badgateway.service.RiskDataService;
 import se.edu.badgateway.service.UserService;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -25,6 +28,9 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+
+    @Resource
+    InfoService infoService;
 
     @Autowired
     private  UserService userService;
@@ -35,6 +41,15 @@ public class UserController {
     @Autowired
     private RiskDataService riskDataService;
 
+    @GetMapping("/test")
+    public String tset(){
+        return "address/test";
+    }
+
+    @GetMapping("test2")
+    public String test2(){
+        return "address/addAddress";
+    }
 
     @GetMapping("regist")
     public String toRegist(){
@@ -74,6 +89,7 @@ public class UserController {
         userService.userRegist(registUser);
         attr.addFlashAttribute("msg","success");
         attr.addFlashAttribute("info","注册成功");
+        attr.addFlashAttribute("u",registUser);
         modelAndView.setViewName("redirect:/session/login");
         return modelAndView;
     }
@@ -110,8 +126,22 @@ public class UserController {
 
 
     @GetMapping("/index")
-    public ModelAndView toIndex(ModelAndView modelAndView){
-        modelAndView.setViewName("users/index");
+    public ModelAndView toIndex(ModelAndView modelAndView,HttpSession session){
+
+        User user = (User) session.getAttribute("user");
+        if (user != null){
+
+            modelAndView.addObject("infoList",infoService.getInfoList());
+            if(user.getType() == 0 ){
+                modelAndView.setViewName("users/admin");
+            }else if(user.getType() == 1){
+                modelAndView.setViewName("users/index");
+            }
+        }else   {
+            modelAndView.addObject("msg","info");
+            modelAndView.addObject("info","请先登录");
+            modelAndView.setViewName("redirect:/session/login");
+        }
         return modelAndView;
     }
 

@@ -19,9 +19,17 @@ public class RiskDataController {
     @Resource
     RiskDataService riskDataService;
 
+
+    //申请重新评估风险等级
+    @GetMapping("evaluate")
+    public ModelAndView evaluate(ModelAndView modelAndView){
+        modelAndView.setViewName("RiskDate/evaluate");
+        return modelAndView;
+    }
+
     @GetMapping("/add")
     public ModelAndView toRiskData() {
-        return new ModelAndView("redirect:riskData");
+        return new ModelAndView("RiskData/appQRCode");
     }
 
     @PostMapping("/add/{userId}")

@@ -1,24 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:forEach items="${requestScope.userP}" var="uP">
     <div class="list-group-item">
-        <a href="/user/show/${uP.key.id}">
-            <img class="mr-3" src="/upload/static/Avatar/{{$user->name.'.jpg'}}" onerror="this.src='../../../public/static/Avatar/fang.jpg'" alt="{{ $user->name }}" width=32>
-                ${uP.key.userName}
+        <a href="/cat/${uP.key.id}">
+            <img class="mr-3" src="../../../public/static/Avatar/#{}.jpg" onerror="this.src='../../../public/static/Avatar/fang.jpg'" alt="{{ $user->name }}" width=32>
+                ${uP.key.userName} 用户名
         </a>
-        <c:if test="${sessionScope.user.type == 0}">
-            <form action="{{route('users.destroy',$user->id)}}" method="post" class="float-right">
-                <button type="submit" class="btn btn-sm btn-danger delete-btn">删除</button>
+            <form action="/user/delete/{}" method="post" class="float-right">
+                <button type="submit" class="btn btn-sm btn-success">修改</button>
             </form>
-        </c:if>
+        <form action="/user/delete/{}" method="post" class="float-right">
+            <button type="submit" class="btn btn-sm btn-success">驳回</button>
+        </form>
     </div>
-    <div >
+<div >
         <ul class="imglist">
-            <c:forEach items="${uP.value}" var="p">
+            //申请内容
                 <li>
-                    <img class="mr-2" src="${p.fname}"  width=150 height="150">
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">${info.title}<small>/${info.time}</small></h5>
+                            ${info.description}
+                    </div>
                 </li>
-        </c:forEach>
         </ul>
     </div>
-</c:forEach>
