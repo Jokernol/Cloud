@@ -1,7 +1,6 @@
 package se.edu.badgateway.service;
 
-import com.alibaba.fastjson.JSON;
-import net.sf.cglib.beans.BeanCopier;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,12 +9,12 @@ import se.edu.badgateway.mapper.UserMapper;
 import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
-import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
+import se.edu.badgateway.pojo.DTO.UserDTO;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -35,11 +34,17 @@ public class RiskDataService {
 
     }
 
-    public List<RiskDataDTO> getAllRiskDataDto(){
-        List<RiskData> riskDataList = riskDataMapper.selectList(null);
-        List<RiskDataDTO> riskDataDTOS;
-        riskDataDTOS = JSON.parseArray(JSON.toJSONString(riskDataList), RiskDataDTO.class);
-        return  riskDataDTOS;
-
+    public Map<UserDTO, RiskDataDTO> getAllRiskDataDto(){
+        List<RiskData> riskDataList = riskDataMapper.selectList(new QueryWrapper<RiskData>().eq("status", 0));
+        Map<UserDTO, RiskDataDTO> map = new HashMap<>();
+        for (RiskData riskData : riskDataList) {
+            User user = userMapper.selectById(riskData.getUserId());
+            UserDTO userDTO = new UserDTO();
+            RiskDataDTO riskDataDTO = new RiskDataDTO();
+            BeanUtils.copyProperties(user, userDTO);
+            BeanUtils.copyProperties(riskData, riskDataDTO);
+            map.put(userDTO, riskDataDTO);
+        }
+        return map;
     }
 }

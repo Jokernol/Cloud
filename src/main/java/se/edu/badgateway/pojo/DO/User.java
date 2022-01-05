@@ -11,7 +11,7 @@ public class User {
     private String telephone;
     private String habitation;
     private String idCard;
-    private String riskRating;
-    private String healthCodeType;
+    private Integer riskRating;
+    private Integer healthCodeType;
     private Integer type;
 }

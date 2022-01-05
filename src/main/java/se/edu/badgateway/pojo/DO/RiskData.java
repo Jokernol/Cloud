@@ -13,4 +13,5 @@ public class RiskData {
     private String bodySituation;
     private String viaPlace;
     private int userId;
+    private Integer status;
 }
