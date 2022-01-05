@@ -1,7 +1,6 @@
 package se.edu.badgateway.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,5 +34,4 @@ public class InfoController {
         attributes.addFlashAttribute("info","添加成功");
         return new ModelAndView("redirect:/user/index");
     }
-
 }

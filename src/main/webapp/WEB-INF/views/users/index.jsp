@@ -33,7 +33,7 @@
                         </div>
 
                         <br>
-                        <a href="/riskData/evaluate">
+                        <a href="${pageContext.request.contextPath}/riskData/evaluate">
                             <label class="form-control btn btn-info" style="width: 200px;" >申请重新评估等级</label>
                         </a>
                     </c:if>
@@ -44,7 +44,7 @@
                         <br>
                     </c:if>
 
-                    <a href="/pictures/to_upload">
+                    <a href="${pageContext.request.contextPath}/public/static/qrcode/${sessionScope.user.id}.jpg">
                         <label class="form-control btn btn-info" style="width: 200px;" >查看/下载二维码</label>
                     </a>
 

@@ -4,7 +4,6 @@ package se.edu.badgateway.controller;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +13,6 @@ import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.IndexHighRiskPeople;
 import se.edu.badgateway.pojo.DTO.RegistUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
-import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
 import se.edu.badgateway.service.InfoService;
 import se.edu.badgateway.service.PlaceService;
 import se.edu.badgateway.service.RiskDataService;
@@ -117,7 +115,7 @@ public class UserController {
 
 
     @RequestMapping("auditDeclaration")
-    public ModelAndView auditDeclaration(ModelAndView modelAndView, @Param("userId") String userId,@Param("riskRating") String riskRating){
+    public ModelAndView auditDeclaration(ModelAndView modelAndView, @Param("userId") Integer userId,@Param("riskRating") Integer riskRating){
         userService.auditDeclaration(userId,riskRating);
         modelAndView.setViewName("redirect:/user/showAuditDeclaration");
         return modelAndView;

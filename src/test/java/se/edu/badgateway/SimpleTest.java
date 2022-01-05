@@ -15,6 +15,7 @@ import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.RiskPlace;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.LoginUser;
+import se.edu.badgateway.pojo.DTO.RegistUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
 import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
 import se.edu.badgateway.service.InfoService;
@@ -72,13 +73,26 @@ public class SimpleTest {
         // 存放在二维码中的内容
         String text = "hello";
         // 生成的二维码的路径及名称
-        String destPath = "src/main/webapp/qrcode/dog.jpg";
+        String destPath = "src/main/webapp/public/static/qrcode/dog.jpg";
         //生成二维码
         QRCodeUtil.encode(text, destPath, 0xFF00FF00);
         // 解析二维码
         String str = QRCodeUtil.decode(destPath);
         // 打印出解析出的内容
         System.out.println(str);
+    }
+
+    @Test
+    public void testGet() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", "1");
+        map.put("password", "1");
+
+        RegistUser registUser = new RegistUser();
+        registUser.setName("1");
+        registUser.setPassword("1");
+
+        System.out.println(userMapper.selectOne(new QueryWrapper<User>().allEq(BeanUtils.beanToMap(registUser))));
     }
 
     @Test
