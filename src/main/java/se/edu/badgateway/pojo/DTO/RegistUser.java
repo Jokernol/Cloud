@@ -17,6 +17,4 @@ public class RegistUser {
     private String telephone;
     private String habitation;
     private String idCard;
-    private String riskRating;
-    private String healthCodeType;
 }
