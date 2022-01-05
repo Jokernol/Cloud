@@ -42,6 +42,34 @@
             <section class="stats mt-2">
                 <%@ include file="../shared/stats.jsp"%>
             </section>
+
+            <hr>
+
+            <h4>待处理事件</h4>
+            <br>
+            <hr>
+            <c:if test="${chatNum != 0}">
+                <div style="float:left">
+                    <a href="chat/userList">待回消息</a>
+                </div>
+                <div style="float: right">
+            <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
+      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center"> 12</span>
+            </span>
+                </div>
+                <br>
+                <hr>
+            </c:if>
+            <c:if test="${chatNum != 0}">
+                <div style="float:left">
+                    <a href="chat/userList">待处理申报</a>
+                </div>
+                <div style="float: right">
+            <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
+      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center"> 12</span>
+            </span>
+                </div>
+            </c:if>
         </aside>
     </div>
 </rapid:override>

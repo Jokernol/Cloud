@@ -19,7 +19,7 @@
 <%--                    <li class="nav-item"><a class="nav-link" href="/concern/idols/${sessionScope.user.id}">推荐</a></li>--%>
 
                     <c:if test="${sessionScope.user.type == 0}">
-                        <li class="nav-item"><a class="nav-link" href="/user/list">用户列表</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/userList">用户列表</a></li>
                     </c:if>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
