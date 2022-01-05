@@ -15,6 +15,7 @@ import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
 import se.edu.badgateway.pojo.DTO.RegistUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
 import se.edu.badgateway.service.PlaceService;
+import se.edu.badgateway.service.RiskDataService;
 import se.edu.badgateway.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -31,11 +32,23 @@ public class UserController {
     @Autowired
     private PlaceService placeService;
 
+    @Autowired
+    private RiskDataService riskDataService;
+
 
     @PostMapping("regist")
     public ModelAndView userRegist(RegistUser registUser,ModelAndView modelAndView, HttpSession session){
         userService.userRegist(registUser);
         modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
+
+
+    @PostMapping("uploadRiskData")
+    public ModelAndView uploadRiskData(ModelAndView modelAndView,RiskDataDTO riskDataDTO){
+        riskDataService.declareRiskData(riskDataDTO);
+        modelAndView.setViewName("userHome");
         return modelAndView;
     }
 
