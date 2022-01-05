@@ -2,7 +2,7 @@
     <img src="/upload/static/Avatar/{{$user->name.'.jpg'}}" onerror="this.src='../../../public/static/Avatar/fang.jpg'" class="gravatar">
 </a>
 <a href="{{route('users.show', $user->id)}}">
-    <h1 style="color:black;">${requestScope.user.userName}</h1>
+    <h1 style="color:black;">${sessionScope.user.name}</h1>
 </a>
 
 

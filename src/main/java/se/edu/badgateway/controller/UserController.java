@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.edu.badgateway.pojo.DTO.IndexHighRiskPeople;
 import se.edu.badgateway.pojo.DTO.RegistUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
@@ -35,13 +36,19 @@ public class UserController {
     private RiskDataService riskDataService;
 
 
-    @PostMapping("regist")
-    public ModelAndView userRegist(RegistUser registUser,ModelAndView modelAndView, HttpSession session){
-        userService.userRegist(registUser);
-        modelAndView.setViewName("login");
-        return modelAndView;
+    @GetMapping("regist")
+    public String toRegist(){
+        return "users/create";
     }
 
+    @PostMapping("/regist")
+    public ModelAndView userRegist(RedirectAttributes attr, RegistUser registUser, ModelAndView modelAndView, HttpSession session){
+        userService.userRegist(registUser);
+        attr.addFlashAttribute("msg","success");
+        attr.addFlashAttribute("info","注册成功");
+        modelAndView.setViewName("redirect:/session/login");
+        return modelAndView;
+    }
 
 
     @PostMapping("uploadRiskData")
@@ -113,6 +120,12 @@ public class UserController {
 
     }
 
+
+    @GetMapping("/index")
+    public ModelAndView toIndex(ModelAndView modelAndView){
+        modelAndView.setViewName("users/index");
+        return modelAndView;
+    }
 
 
 }

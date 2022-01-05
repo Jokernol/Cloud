@@ -11,31 +11,31 @@
             <div class="card-body">
                 <h6 style="color: #ed969e ">(注意:带*号为必填信息)</h6>
 
-                <form method="POST" action="${pageContext.request.contextPath}/user/create">
+                <form method="POST" action="${pageContext.request.contextPath}/User/regist">
 
                     <div class="form-group">
                         <label for="name" >*姓名：</label>
-                        <input type="text" name="userName" id="name" class="form-control" value="${user.userName}">
+                        <input type="text" name="name" id="name" class="form-control" value="${user.name}">
                     </div>
 
                     <div class="form-group">
-                        <label for="intro" >intro：</label>
-                        <input type="text" name="intro" id="intro" class="form-control" value="${user.intro}">
+                        <label for="intro" >性别</label>
+                        <input type="text" name="sex" id="intro" class="form-control" value="${user.sex}">
                     </div>
 
                     <div class="form-group">
-                        <label for="email">邮箱：</label>
-                        <input type="text" id="email" name="email" class="form-control" value="${user.email}">
+                        <label for="email">*电话:</label>
+                        <input type="text" id="email" name="telephone" class="form-control" value="${user.telephone}">
                     </div>
 
                     <div class="form-group">
-                        <label for="mobile">*电话：</label>
-                        <input type="text" id="mobile" name="mobile" class="form-control" value="${user.mobile}">
+                        <label for="habitation">*居住地(门牌号):</label>
+                        <input type="text" id="habitation" name="habitation" class="form-control" value="${user.habitation}">
                     </div>
 
                     <div class="form-group">
-                        <label for="QQ">QQ：</label>
-                        <input type="text" id="QQ" name="QQ" class="form-control" value="${user.QQ}">
+                        <label for="QQ">身份证号:</label>
+                        <input type="text" id="QQ" name="idCard" class="form-control" value="${user.idCard}">
                     </div>
 
                     <div class="form-group">
