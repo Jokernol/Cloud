@@ -15,27 +15,27 @@
 
                     <div class="form-group">
                         <label for="name" >*姓名：</label>
-                        <input type="text" name="name" id="name" class="form-control" value="${user.name}">
+                        <input type="text" name="name" id="name" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="intro" >性别</label>
-                        <input type="text" name="sex" id="intro" class="form-control" value="${user.sex}">
+                        <input type="text" name="sex" id="intro" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="email">*电话:</label>
-                        <input type="text" id="email" name="telephone" class="form-control" value="${user.telephone}">
+                        <input type="text" id="email" name="telephone" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="habitation">*居住地(门牌号):</label>
-                        <input type="text" id="habitation" name="habitation" class="form-control" value="${user.habitation}">
+                        <input type="text" id="habitation" name="habitation" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="QQ">身份证号:</label>
-                        <input type="text" id="QQ" name="idCard" class="form-control" value="${user.idCard}">
+                        <input type="text" id="QQ" name="idCard" class="form-control">
                     </div>
 
                     <div class="form-group">

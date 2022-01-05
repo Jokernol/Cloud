@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.edu.badgateway.pojo.DTO.InfoDTO;
 import se.edu.badgateway.service.InfoService;
 
@@ -17,29 +18,22 @@ public class InfoController {
     @Resource
     InfoService infoService;
 
-    @GetMapping("/add")
-    public ModelAndView toAddInfo() {
-        return new ModelAndView("redirect:info");
-    }
 
     @PostMapping("/add")
-    public ModelAndView addInfo(InfoDTO infoDTO) {
+    public ModelAndView addInfo(InfoDTO infoDTO, RedirectAttributes attributes) {
         infoService.addInfo(infoDTO);
-        return new ModelAndView("redirect:info");
+        attributes.addFlashAttribute("msg","success");
+        attributes.addFlashAttribute("info","添加成功");
+
+        return new ModelAndView("redirect:/user/index");
     }
 
     @PostMapping("/delete/{id}")
-    public ModelAndView deleteInfo(@PathVariable Integer id) {
+    public ModelAndView deleteInfo(@PathVariable Integer id,RedirectAttributes attributes) {
         infoService.deleteInfo(id);
-        return new ModelAndView("redirect:info");
-    }
-
-    @PostMapping("/get")
-    public ModelAndView getInfoList() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:info");
-        modelAndView.addObject("infoList", infoService.getInfoList());
-        return modelAndView;
+        attributes.addFlashAttribute("msg","success");
+        attributes.addFlashAttribute("info","添加成功");
+        return new ModelAndView("redirect:/user/index");
     }
 
 }

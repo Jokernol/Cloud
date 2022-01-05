@@ -13,7 +13,7 @@
         <form method="POST" action="/session/login">
           <div class="form-group">
             <label for="loginName">账号</label>
-            <input type="text" name="name" id="loginName" class="form-control" value="${requestScope.user.userName}" >
+            <input type="text" name="name" id="loginName" class="form-control" value="${requestScope.u.name}" >
           </div>
 
           <div class="form-group">
@@ -33,7 +33,7 @@
 
         <hr>
 
-        <p>还没账号？<a href="/User/regist">现在注册！</a></p>
+        <p>还没账号？<a href="/user/regist">现在注册！</a></p>
       </div>
     </div>
   </div>

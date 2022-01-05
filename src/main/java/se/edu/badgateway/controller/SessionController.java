@@ -31,28 +31,18 @@ public class SessionController {
     @PostMapping(value = "/login")
     public ModelAndView userLogin(RedirectAttributes attributes,LoginUser loginUser, ModelAndView modelAndView, HttpSession session){
         Integer result=userService.userLogin(loginUser,session);
-        switch (result) {
-            case 0:
 
-                attributes.addFlashAttribute("msg","success");
-                attributes.addFlashAttribute("info","登录成功");
-                modelAndView.setViewName("adminHome");
-                return modelAndView;
-
-            case 1:
-
-                attributes.addFlashAttribute("msg","success");
-                attributes.addFlashAttribute("info","登录成功");
-                modelAndView.setViewName("redirect:/User/index");
-                return modelAndView;
-
-            default:
-                attributes.addFlashAttribute("msg","success");
-                attributes.addFlashAttribute("info","登录成功");
-                modelAndView.setViewName("redirect:session/login");
-                return modelAndView;
+        if (result != -1){
+            attributes.addFlashAttribute("msg","success");
+            attributes.addFlashAttribute("info","登录成功");
+            modelAndView.setViewName("redirect:/user/index");
+        }else{
+            attributes.addFlashAttribute("msg","danger");
+            attributes.addFlashAttribute("info","登录失败");
+            modelAndView.setViewName("redirect:/session/login");
 
         }
+        return modelAndView;
 
     }
 

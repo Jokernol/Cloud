@@ -10,7 +10,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container ">
-        <a class="navbar-brand" href="/user/to_index">个人首页</a>
+        <a class="navbar-brand" href="/user/index">个人首页</a>
         <ul class="navbar-nav justify-content-end">
 
 
@@ -18,7 +18,9 @@
                 <c:when test="${sessionScope.user != null}">
 <%--                    <li class="nav-item"><a class="nav-link" href="/concern/idols/${sessionScope.user.id}">推荐</a></li>--%>
 
-                    <li class="nav-item"><a class="nav-link" href="/concern/list/-1">用户列表</a></li>
+                    <c:if test="${sessionScope.user.type == 0}">
+                        <li class="nav-item"><a class="nav-link" href="/user/list">用户列表</a></li>
+                    </c:if>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             ${sessionScope.user.name}

@@ -66,7 +66,7 @@ public class UserService {
         Map<String, Object> map = BeanUtils.beanToMap(loginUser);
         List<User> users = userMapper.selectByMap(map);
 
-        if (users == null) {
+        if (users == null || users.isEmpty()) {
             return -1;
         }
 
