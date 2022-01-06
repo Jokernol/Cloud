@@ -34,6 +34,15 @@ public class RiskDataService {
 
     }
 
+
+
+    public long getRiskDataDtoNum(){
+        long num =riskDataMapper.selectCount(new QueryWrapper<RiskData>().eq("status", 0));
+        return num;
+    }
+
+
+
     public Map<UserDTO, RiskDataDTO> getAllRiskDataDto(){
         List<RiskData> riskDataList = riskDataMapper.selectList(new QueryWrapper<RiskData>().eq("status", 0));
         Map<UserDTO, RiskDataDTO> map = new HashMap<>();

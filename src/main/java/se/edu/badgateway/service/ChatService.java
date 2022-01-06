@@ -1,6 +1,7 @@
 package se.edu.badgateway.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import org.springframework.stereotype.Component;
 import se.edu.badgateway.mapper.ChatMapper;
 import se.edu.badgateway.mapper.UserMapper;
@@ -22,7 +23,7 @@ public class ChatService {
     @Resource
     private UserMapper userMapper;
 
-    public List<Chat> getChetRecords(int senderId,int receiverId){
+    public List<Chat> getChatRecords(int senderId,int receiverId){
         List<Chat> chats = chatMapper.selectList(new QueryWrapper<Chat>()
                                                     .eq("sender_id",senderId)
                                                     .eq("receiver_id",receiverId)
@@ -52,5 +53,15 @@ public class ChatService {
         }
 
         return users;
+    }
+
+    public void checkNews(int receiverId){
+        UpdateWrapper<Chat> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("receiver_Id",receiverId);
+        Chat chat = new Chat();
+        chat.setIsRead(1);
+        chatMapper.update(chat, updateWrapper);
+
+
     }
 }

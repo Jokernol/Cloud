@@ -1,6 +1,7 @@
 package se.edu.badgateway;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -182,6 +183,15 @@ public class SimpleTest {
     public  void testGetFollowUsers(){
         List<User> users = chatService.getFollowUsers();
         System.out.println(users);
+    }
+
+    @Test
+    public void testCheckNews(){
+        UpdateWrapper<Chat> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("receiver_Id",1);
+        Chat chat = new Chat();
+        chat.setIsRead(1);
+        chatMapper.update(chat, updateWrapper);
     }
 }
 
