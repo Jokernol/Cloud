@@ -1,22 +1,22 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<a href="/user/test">
+<a href="/riskPlace/allAddress">
     <strong id="following" class="stat">
-        ${requestScope.allRiskPlace}
+        ${requestScope.IdolNumber}
     </strong>
     所有险地区数量
 </a>
-<a href="/user/test">
+<a href="/riskPlace/allAddress">
     <strong id="followers" class="stat">
-        ${requestScope.highRiskPlace}
+        ${requestScope.followNumber}
     </strong>
     高风险地区数量
 </a>
 
-<a href="/user/test">
+<a href="/riskPlace/allAddress">
     <strong id="dd" class="stat">
-        ${requestScope.lowRiskPlace}
+        ${requestScope.followNumber}
     </strong>
     中风险地区数量
 </a>

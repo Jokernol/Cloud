@@ -21,12 +21,9 @@ public class PlaceService {
     RiskPlaceMapper riskPlaceMapper;
 
 
-    public  List<RiskPlaceDTO> getIndexRiskPlace(){
-        List<RiskPlaceDTO> riskPlaceDTOS;
+    public  List<RiskPlace> getIndexRiskPlace(){
         List<RiskPlace> riskPlaces=riskPlaceMapper.getAllRiskPlace();
-        riskPlaceDTOS = JSON.parseArray(JSON.toJSONString(riskPlaces), RiskPlaceDTO.class);
-        BeanUtils.copyProperties(riskPlaces, riskPlaceDTOS);
-        return riskPlaceDTOS;
+        return riskPlaces;
     }
 
 
@@ -37,9 +34,7 @@ public class PlaceService {
         riskPlaceMapper.deleteByMap(map);
     }
 
-    public void addRiskPlace(RiskPlaceDTO riskPlaceDTO){
-        RiskPlace riskPlace =new RiskPlace();
-        BeanUtils.copyProperties(riskPlaceDTO, riskPlace);
+    public void addRiskPlace(RiskPlace riskPlace){
         riskPlaceMapper.insert(riskPlace);
 
     }

@@ -37,6 +37,7 @@ public class RiskDataService {
 
     }
 
+    public Map<User, RiskData> getAllRiskDataDto(){
 
 
     public long getRiskDataDtoNum(){
@@ -46,14 +47,10 @@ public class RiskDataService {
 
     public Map<UserDTO, RiskDataDTO> getAllRiskDataDto(){
         List<RiskData> riskDataList = riskDataMapper.selectList(new QueryWrapper<RiskData>().eq("status", 0));
-        Map<UserDTO, RiskDataDTO> map = new HashMap<>();
+        Map<User, RiskData> map = new HashMap<>();
         for (RiskData riskData : riskDataList) {
             User user = userMapper.selectById(riskData.getUserId());
-            UserDTO userDTO = new UserDTO();
-            RiskDataDTO riskDataDTO=new RiskDataDTO();
-            BeanUtils.copyProperties(riskData, riskDataDTO);
-            BeanUtils.copyProperties(user, userDTO);
-            map.put(userDTO, riskDataDTO);
+            map.put(user, riskData);
         }
         return map;
     }

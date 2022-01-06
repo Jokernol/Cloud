@@ -11,8 +11,9 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RiskPlaceDTO {
+    private int id;
     private String level;
-    private String x;
-    private String y;
+    private String X;
+    private String Y;
     private String intro;
 }

@@ -1,5 +1,3 @@
-<%@ page import="java.time.LocalDate" %>
-<%@ page import="se.edu.badgateway.pojo.DO.Info" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -18,7 +16,6 @@
             <hr>
             <c:forEach items="${requestScope.infoList}" var="info" >
                 <ul class="list-unstyled">
-
                     <li class="media mt-4 mb-4">
                         <a href="">
                             <img src="../../../public/static/Avatar/1.jpg" onerror="this.src='../../../public/static/1.jpg'" alt="{{ $user->name }}" class="mr-3 gravatar"/>
@@ -42,52 +39,41 @@
             <section class="stats mt-2">
                 <%@ include file="../shared/stats.jsp"%>
             </section>
-
             <hr>
-
+            <a class="btn-sm btn btn-outline-warning" href="/riskPlace/allAddress">风险地区管理</a>
+            <hr>
             <h4>待处理事件</h4>
             <br>
             <hr>
+            <c:if test="${requestScope.notReadNum != 0}">
+                <a href="/chat/userList" class="btn btn-sm btn-outline-success" >
 
-            <c:if test="${getRiskDataDto != 0}">
-                <a href="/riskData/riskList">
-
+                    <div style="float:left">
+                       待回消息
+                    </div>
                     <div style="float: right">
             <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
-      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center">${getRiskDataDto}</span>
+      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center"> ${requestScope.notReadNum}</span>
             </span>
                     </div>
                 </a>
-
+                <br>
+                <hr>
             </c:if>
-
-            <br>
-            <br>
-
-            <h4>管理高风险人群</h4>
-            <br>
-            <hr>
-
-            <c:if test="${highRiskPeopleNum != 0}">
-                <a href="/user/userList">
-
+            <c:if test="${chatNum != 0}">
+                <a href="/riskData/riskList" class="btn btn-sm btn-outline-dark">
+                    <div style="float:left">
+                        待处理申报
+                    </div>
                     <div style="float: right">
             <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
-      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center">${highRiskPeopleNum}</span>
+      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center"> 12</span>
             </span>
                     </div>
                 </a>
-
+                <hr>
             </c:if>
-
-
-
-
         </aside>
-
-
-
-
     </div>
 </rapid:override>
 <%@include file="../layouts/default.jsp"%>

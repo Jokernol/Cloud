@@ -24,13 +24,16 @@
                                 <h5 class="mt-0 mb-1">${info.title}<small>${info.time}</small></h5>
                                     ${info.description}
                             </div>
-                            <form action="/chat/chat/${user.id}" onsubmit="return confirm('即将进入聊天');">
-                                <button type="submit" class="btn btn-sm btn-outline-primary">探访</button>
-                            </form>
+                            <a class="nav-link  btn btn-sm  btn-outline-primary" href="/chat/chat/${user.id}" onclick="return confirm('即将进入聊天')">探访</a>
                             |
-                            <form action="/chat/chat/${user.id}" onsubmit="return confirm('是否修改该用户风险等级');">
-                                <button type="submit" class="btn btn-sm btn-primary">修改风险等级</button>
-                            </form>
+                            <a class="nav-link dropdown-toggle btn btn-sm  btn-outline-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                修改风险等级
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/user/edit" onclick="return confirm('确定设为低风险吗');">低风险</a>
+
+                                <a class="dropdown-item" href="/user/edit" onclick="return confirm('确定设为高风险吗');">高风险</a>
+                            </div>
                         </li>
                     </ul>
 

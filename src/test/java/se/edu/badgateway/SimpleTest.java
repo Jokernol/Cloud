@@ -1,7 +1,6 @@
 package se.edu.badgateway;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -18,16 +17,17 @@ import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.RiskPlace;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.LoginUser;
-import se.edu.badgateway.pojo.DTO.RegistUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
 import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
 import se.edu.badgateway.service.ChatService;
+import se.edu.badgateway.pojo.DTO.*;
 import se.edu.badgateway.service.InfoService;
 import se.edu.badgateway.service.PlaceService;
 import se.edu.badgateway.service.RiskDataService;
 import se.edu.badgateway.utils.QRCodeUtil;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -122,30 +122,12 @@ public class SimpleTest {
         System.out.println(riskDataService.getAllRiskDataDto());
     }
 
-    @Test
-    public void testAddPlace(){
-        RiskPlace riskPlace =new RiskPlace();
-        RiskPlaceDTO riskPlaceDTO=new RiskPlaceDTO("red","123","2222","123");
-        org.springframework.beans.BeanUtils.copyProperties(riskPlaceDTO, riskPlace);
-        System.out.println(riskPlace);
-        riskPlaceMapper.insert(riskPlace);
-    }
-
-    @Test
-    public void testDeletePlace(){
-        RiskPlaceDTO riskPlaceDTO=new RiskPlaceDTO("22","22","22","yellow");
-        Map<String, Object> map = new HashMap<>();
-        map.put("x",riskPlaceDTO.getX());
-        map.put("y",riskPlaceDTO.getY());
-        riskPlaceMapper.deleteByMap(map);
-    }
 
     @Test
     public void testgetIndexRiskPlace(){
         PlaceService placeService =new PlaceService();
-        List<RiskPlaceDTO> riskPlaceDTOS= placeService.getIndexRiskPlace();
+        List<RiskPlace> riskPlaceDTOS= placeService.getIndexRiskPlace();
         System.out.println(riskPlaceDTOS);
-
     }
 
 
@@ -158,6 +140,12 @@ public class SimpleTest {
         riskDataMapper.insert(riskData);
     }
 
+    @Test
+    public void testGetAllRiskDataDto(){
+        List<RiskDataDTO> riskDataDTOList=new LinkedList<RiskDataDTO>();
+        Map<User, RiskData> map = riskDataService.getAllRiskDataDto();
+        System.out.println(map);
+    }
 
     @Test
     public void testGetChetRecords(){
@@ -176,15 +164,6 @@ public class SimpleTest {
     public  void testGetFollowUsers(){
         List<User> users = chatService.getFollowUsers();
         System.out.println(users);
-    }
-
-    @Test
-    public void testCheckNews(){
-        UpdateWrapper<Chat> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq("receiver_Id",1);
-        Chat chat = new Chat();
-        chat.setIsRead(1);
-        chatMapper.update(chat, updateWrapper);
     }
 }
 
