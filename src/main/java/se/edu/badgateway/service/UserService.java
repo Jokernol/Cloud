@@ -1,5 +1,6 @@
 package se.edu.badgateway.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
 import net.sf.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,9 @@ public class UserService {
     @Resource
     QRCodeService qrCodeService;
 
+    @Resource
+    RiskDataService riskDataService;
+
     public boolean userRegist(RegistUser registUser){
         final BeanCopier beanCopier = BeanCopier.create(RegistUser.class,User.class, false);
         User user=new User();
@@ -44,6 +48,8 @@ public class UserService {
         return true;
     }
 
+
+
     public List<IndexHighRiskPeople> getAllHighRiskPeople(){
         return userMapper.getHighRiskPeople();
     }
@@ -53,11 +59,16 @@ public class UserService {
         user.setId(userId);
         user.setRiskRating(riskRating);
         userMapper.updateById(user);
-
+        riskDataService.changeRiskDataStatus(userId);
         switch (riskRating) {
             case 0: qrCodeService.encodeGreen(userId); break;
             case 2: qrCodeService.encodeRed(userId); break;
         }
+    }
+
+    public Integer getAllHighPeopleNum(){
+        return Math.toIntExact(userMapper.selectCount(new QueryWrapper<User>()
+                                                        .eq("risk_rating",2)));
     }
 
     public Integer userLogin(LoginUser loginUser, HttpSession session) {

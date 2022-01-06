@@ -31,7 +31,7 @@ public class InfoController {
     public ModelAndView deleteInfo(@PathVariable Integer id,RedirectAttributes attributes) {
         infoService.deleteInfo(id);
         attributes.addFlashAttribute("msg","success");
-        attributes.addFlashAttribute("info","添加成功");
+        attributes.addFlashAttribute("info","删除成功");
         return new ModelAndView("redirect:/user/index");
     }
 }

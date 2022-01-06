@@ -43,7 +43,9 @@
                         </div>
                         <br>
                     </c:if>
-
+                    <a href="${pageContext.request.contextPath}/riskData/evaluate">
+                        <label class="form-control btn btn-info" style="width: 200px;" >查看/下载二维码</label>
+                    </a>
                     <a href="${pageContext.request.contextPath}/public/static/qrcode/${sessionScope.user.id}.jpg">
                         <label class="form-control btn btn-info" style="width: 200px;" >查看/下载二维码</label>
                     </a>

@@ -24,6 +24,9 @@ public class RiskPlaceController {
     private PlaceService placeService;
 
 
+
+
+
     @GetMapping("adminHome")
     public String toAdminHome(RedirectAttributes attr){
         List<RiskPlaceDTO> riskPlaceDTOS =placeService.getIndexRiskPlace();
@@ -34,7 +37,7 @@ public class RiskPlaceController {
     @PostMapping("addRiskPlace")
     public ModelAndView addRiskPlace(ModelAndView modelAndView, RiskPlaceDTO riskPlaceDTO){
         placeService.addRiskPlace(riskPlaceDTO);
-        modelAndView.setViewName("redirect:/riskPlace/adminHome");
+        modelAndView.setViewName("redirect:/user/index");
         return modelAndView;
 
     }
