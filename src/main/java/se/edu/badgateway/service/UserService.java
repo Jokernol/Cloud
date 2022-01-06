@@ -1,5 +1,6 @@
 package se.edu.badgateway.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
 import net.sf.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Component;
@@ -63,6 +64,11 @@ public class UserService {
             case 0: qrCodeService.encodeGreen(userId); break;
             case 2: qrCodeService.encodeRed(userId); break;
         }
+    }
+
+    public Integer getAllHighPeopleNum(){
+        return Math.toIntExact(userMapper.selectCount(new QueryWrapper<User>()
+                                                        .eq("risk_rating",2)));
     }
 
     public Integer userLogin(LoginUser loginUser, HttpSession session) {

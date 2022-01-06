@@ -16,6 +16,6 @@ public interface UserMapper extends BaseMapper<User> {
      */
 
 
-    @Select("select u.name,u.sex,u.telephone,u.habitation,u.health_code_type,rd.via_place,rd.body_situation from user u,risk_data rd Where u.id=rd.user_id AND u.risk_rating=3; ")
+    @Select("select u.name,u.sex,u.telephone,u.habitation,u.health_code_type,rd.via_place,rd.body_situation from user u,risk_data rd Where u.id=rd.user_id AND u.risk_rating=2; ")
     List<IndexHighRiskPeople> getHighRiskPeople();
 }

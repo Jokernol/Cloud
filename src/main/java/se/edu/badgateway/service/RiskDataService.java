@@ -40,7 +40,7 @@ public class RiskDataService {
 
 
     public long getRiskDataDtoNum(){
-        long num =riskDataMapper.selectCount(new QueryWrapper<RiskData>().eq("status", 0));
+        long num =riskDataMapper.selectCount(new QueryWrapper<RiskData>().eq("status","0"));
         return num;
     }
 

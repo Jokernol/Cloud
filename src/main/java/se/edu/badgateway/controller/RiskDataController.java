@@ -43,7 +43,7 @@ public class RiskDataController {
     @PostMapping("/add/{userId}")
     public ModelAndView addRiskData(RiskDataDTO riskDataDTO) {
         riskDataService.declareRiskData(riskDataDTO);
-        return new ModelAndView("redirect:userHome");
+        return new ModelAndView("redirect:/user/index");
     }
 
     @GetMapping("getAllRiskData")

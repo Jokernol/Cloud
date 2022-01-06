@@ -11,7 +11,7 @@
             <div class="card-body">
                 <h6 style="color: #ed969e ">(注意:带*号为必填信息)</h6>
 
-                <form method="POST" action="${pageContext.request.contextPath}/user/regist">
+                <form method="POST" action="${pageContext.request.contextPath}/riskData/add/${user.id}">
 
                     <div class="form-group">
                         <label>*近7日是否有发烧情况</label>
@@ -35,8 +35,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password">*今日是否途经高风险地区：</label>
-                        <input type="password" id="password" name="viaPlace" class="form-control">
+                        <label for="password">*今期途经地区：</label>
+                        <input type="text" id="password" name="viaPlace" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-primary">提交</button>
                 </form>

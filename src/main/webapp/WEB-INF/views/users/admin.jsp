@@ -49,18 +49,45 @@
             <br>
             <hr>
 
-            <c:if test="${notDealRiskData != 0}">
+            <c:if test="${getRiskDataDto != 0}">
                 <a href="/riskData/riskList">
 
                     <div style="float: right">
             <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
-      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center">${notDealRiskData}</span>
+      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center">${getRiskDataDto}</span>
             </span>
                     </div>
                 </a>
-                <hr>
+
             </c:if>
+
+            <br>
+            <br>
+
+            <h4>管理高风险人群</h4>
+            <br>
+            <hr>
+
+            <c:if test="${highRiskPeopleNum != 0}">
+                <a href="/user/userList">
+
+                    <div style="float: right">
+            <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
+      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center">${highRiskPeopleNum}</span>
+            </span>
+                    </div>
+                </a>
+
+            </c:if>
+
+
+
+
         </aside>
+
+
+
+
     </div>
 </rapid:override>
 <%@include file="../layouts/default.jsp"%>

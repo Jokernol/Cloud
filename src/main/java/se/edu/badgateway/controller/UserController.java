@@ -69,12 +69,9 @@ public class UserController {
 
 
 
-    @GetMapping("showGetAllHighRiskPeople")
-    public String toGetAllHighRiskPeople(RedirectAttributes attr){
-        List<IndexHighRiskPeople> indexHighRiskPeople= userService.getAllHighRiskPeople();
-        attr.addFlashAttribute("indexHighRiskPeople",indexHighRiskPeople);
-        return "admin/allHighRiskPeople";
-    }
+
+
+
 
 
 
@@ -93,20 +90,22 @@ public class UserController {
     @PostMapping("uploadRiskData")
     public ModelAndView uploadRiskData(ModelAndView modelAndView,RiskDataDTO riskDataDTO){
         riskDataService.declareRiskData(riskDataDTO);
-        modelAndView.setViewName("userHome");
+        modelAndView.setViewName("user/index");
+        return modelAndView;
+    }
+
+
+    @GetMapping("/userList")
+    public ModelAndView userList(ModelAndView modelAndView){
+        List<IndexHighRiskPeople> users = userService.getAllHighRiskPeople();
+        modelAndView.addObject("userList",users);
+        modelAndView.setViewName("users/userList");
         return modelAndView;
     }
 
 
 
 
-
-    @GetMapping("getAllHighRiskPeople")
-    public ModelAndView getAllHighRiskPeople(ModelAndView modelAndView,RedirectAttributes attr){
-        modelAndView.setViewName("redirect:/user/showGetAllHighRiskPeople");
-        return modelAndView;
-
-    }
 
 
 
@@ -131,6 +130,7 @@ public class UserController {
             modelAndView.addObject("allRiskPlace",placeService.getAllRiskPlaceNum());
             modelAndView.addObject("highRiskPlace",placeService.getHighRiskPlaceNum());
             modelAndView.addObject("lowRiskPlace",placeService.getLowRiskPlaceNum());
+            modelAndView.addObject("HighRiskPeopleNum",userService.getAllHighPeopleNum());
             if(user.getType() == 0 ){
                 modelAndView.setViewName("users/admin");
             }else if(user.getType() == 1){
@@ -186,13 +186,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping("/userList")
-    public ModelAndView userList(ModelAndView modelAndView){
-        List<User> users = userMapper.selectList(null);
-        modelAndView.addObject("userList",users);
-        modelAndView.setViewName("users/userList");
-        return modelAndView;
-    }
+
 
     @GetMapping("/search")
     public ModelAndView searchUser(ModelAndView modelAndView,@RequestParam("search") String search){
