@@ -3,20 +3,20 @@
 
 <a href="/user/test">
     <strong id="following" class="stat">
-        ${requestScope.IdolNumber}
+        ${requestScope.allRiskPlace}
     </strong>
     所有险地区数量
 </a>
-<a href="/concern/follows/${requestScope.user.id}">
+<a href="/user/test">
     <strong id="followers" class="stat">
-        ${requestScope.followNumber}
+        ${requestScope.highRiskPlace}
     </strong>
     高风险地区数量
 </a>
 
-<a href="/concern/follows/${requestScope.user.id}">
+<a href="/user/test">
     <strong id="dd" class="stat">
-        ${requestScope.followNumber}
+        ${requestScope.lowRiskPlace}
     </strong>
     中风险地区数量
 </a>

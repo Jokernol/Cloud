@@ -45,6 +45,12 @@ public class PlaceService {
     }
 
 
+    public Integer getAllRiskPlaceNum(){
+        QueryWrapper<RiskPlace> queryWrapper=new QueryWrapper();
+        Integer num= Math.toIntExact(riskPlaceMapper.selectCount(queryWrapper));
+        return num;
+    }
+
 
     public Integer getLowRiskPlaceNum(){
         QueryWrapper<RiskPlace> queryWrapper=new QueryWrapper();

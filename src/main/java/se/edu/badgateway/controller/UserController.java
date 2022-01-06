@@ -79,20 +79,6 @@ public class UserController {
 
 
 
-    @GetMapping("showAuditDeclaration")
-    public String auditDeclaration(RedirectAttributes attr){
-        attr.addFlashAttribute("riskDataDTOs", riskDataService.getAllRiskDataDto());
-        return "admin/auditDeclaration";
-    }
-
-
-
-
-
-
-
-
-
     @PostMapping("/regist")
     public ModelAndView userRegist(RedirectAttributes attr, RegistUser registUser, ModelAndView modelAndView){
         userService.userRegist(registUser);
@@ -128,7 +114,7 @@ public class UserController {
     @RequestMapping("auditDeclaration")
     public ModelAndView auditDeclaration(ModelAndView modelAndView, @Param("userId") Integer userId,@Param("riskRating") Integer riskRating){
         userService.auditDeclaration(userId,riskRating);
-        modelAndView.setViewName("redirect:/user/showAuditDeclaration");
+        modelAndView.setViewName("redirect:/riskData/riskList");
         return modelAndView;
     }
 
@@ -139,9 +125,12 @@ public class UserController {
 
         User user = (User) session.getAttribute("user");
         if (user != null){
-
             modelAndView.addObject("notReadNum",chatService.getMsgNum(user.getId()));
+            modelAndView.addObject("notDealRiskData",riskDataService.getRiskDataDtoNum());
             modelAndView.addObject("infoList",infoService.getInfoList());
+            modelAndView.addObject("allRiskPlace",placeService.getAllRiskPlaceNum());
+            modelAndView.addObject("highRiskPlace",placeService.getHighRiskPlaceNum());
+            modelAndView.addObject("lowRiskPlace",placeService.getLowRiskPlaceNum());
             if(user.getType() == 0 ){
                 modelAndView.setViewName("users/admin");
             }else if(user.getType() == 1){
@@ -212,6 +201,14 @@ public class UserController {
         modelAndView.addObject("userList",users);
         modelAndView.setViewName("users/userList");
         return modelAndView;
+    }
+
+    @PostMapping("/logout")
+    public ModelAndView userLogout(ModelAndView modelAndView,HttpSession session){
+        session.invalidate();
+        modelAndView.setViewName("sessions/login");
+        return modelAndView;
+
     }
 
 

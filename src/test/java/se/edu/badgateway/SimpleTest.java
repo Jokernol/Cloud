@@ -159,12 +159,7 @@ public class SimpleTest {
         riskDataMapper.insert(riskData);
     }
 
-    @Test
-    public void testGetAllRiskDataDto(){
-        List<RiskDataDTO> riskDataDTOList=new LinkedList<RiskDataDTO>();
-        Map<UserDTO, RiskDataDTO> map = riskDataService.getAllRiskDataDto();
-        System.out.println(map);
-    }
+
 
     @Test
     public void testGetChetRecords(){

@@ -28,6 +28,9 @@ public class UserService {
     @Resource
     QRCodeService qrCodeService;
 
+    @Resource
+    RiskDataService riskDataService;
+
     public boolean userRegist(RegistUser registUser){
         final BeanCopier beanCopier = BeanCopier.create(RegistUser.class,User.class, false);
         User user=new User();
@@ -44,6 +47,8 @@ public class UserService {
         return true;
     }
 
+
+
     public List<IndexHighRiskPeople> getAllHighRiskPeople(){
         return userMapper.getHighRiskPeople();
     }
@@ -53,7 +58,7 @@ public class UserService {
         user.setId(userId);
         user.setRiskRating(riskRating);
         userMapper.updateById(user);
-
+        riskDataService.changeRiskDataStatus(userId);
         switch (riskRating) {
             case 0: qrCodeService.encodeGreen(userId); break;
             case 2: qrCodeService.encodeRed(userId); break;

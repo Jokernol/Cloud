@@ -30,7 +30,7 @@ public class RiskDataController {
     @GetMapping("riskList")
     public ModelAndView riskList(ModelAndView modelAndView){
         modelAndView.setViewName("RiskData/RiskList");
-        Map<UserDTO, RiskData> map =  riskDataService.getAllRiskDataDto();
+        Map<UserDTO, RiskDataDTO> map =  riskDataService.getAllRiskDataDto();
         modelAndView.addObject("riskList",map);
         return modelAndView;
     }

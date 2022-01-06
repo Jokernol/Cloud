@@ -4,11 +4,11 @@
 <rapid:override name="content">
 
 
-  <a href="/pictures/to_upload">
-    <label class="form-control btn btn-info" style="width: 100px;">暂定</label>
+  <a href="/user/test2">
+    <label class="form-control btn btn-info" style="width: 100px;">增加地点</label>
   </a>
   <a href="/pictures/to_upload">
-    <label class="form-control btn btn-dark" style="width: 100px;">暂定</label>
+    <label class="form-control btn btn-dark" style="width: 100px;">删除</label>
   </a>
   <section>
     <ul class="imglist">
@@ -16,14 +16,14 @@
         高风险:
       </li>
       <li>
-        <div style="width: 25px;height: 25px; border: 1px solid red;border-radius: 50%;background-color: red;">
+        <div style="width: 25px;height: 25px; border: 1px solid #ff0000;border-radius: 50%;background-color: #ff0000;">
         </div>
       </li>
       <li>
         中风险:
       </li>
       <li>
-        <div style="width: 25px;height: 25px; border: 1px solid yellow;border-radius: 50%;background-color: yellow;">
+        <div style="width: 25px;height: 25px; border: 1px solid yellow;border-radius: 50%;background-color: #ffff00;">
         </div>
       </li>
     </ul>

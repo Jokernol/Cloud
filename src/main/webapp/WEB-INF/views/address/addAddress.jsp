@@ -1,9 +1,10 @@
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <rapid:override name="content">
-  <form action="${pageContext.request.contextPath}/stations/post" method="post">
+  <form action="${pageContext.request.contextPath}/riskPlace/addRiskPlace" method="post">
     测试:
-    <input name="position" >
+    <input name="intro">
+    <input name="level">
     <input type="text" id="x" name="x" value="" />
     <input type="text" id="y" name="y" value="" />
     <input onclick="return isNull()" value="提交" type="submit" >

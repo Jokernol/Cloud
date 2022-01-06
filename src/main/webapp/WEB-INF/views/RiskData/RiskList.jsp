@@ -9,11 +9,13 @@
                 <li class="media mt-4 mb-4">
                     <a href="">
                         <img src="../../../public/static/Avatar/1.jpg" onerror="this.src='../../../public/static/1.jpg'" alt="{{ $user->name }}" class="mr-3 gravatar"/>
-                        <h6 class="mt-0 mb-1" style="color: black">risk.key.name</h6>
+                        <h6 class="mt-0 mb-1" style="color: black">${risk.key.name}</h6>
                     </a>
                     <div class="media-body">
-                        <h5 class="mt-0 mb-1">申请内容<small></small></h5>
-                            七天内是否发烧:${risk.value.temperature}  近日身体状况:${risk.value.bodySituation} 今日通过地点: ${risk.value.}
+                        <h5 class="mt-0 mb-1">上传内容<small></small></h5>
+                            体温状况:${risk.value.temperature}  近日身体状况:${risk.value.bodySituation} 途径地点: ${risk.value.viaPlace}
+                            <a href="/user/auditDeclaration?userId=${risk.value.userId}&&riskRating=0">低风险</a>
+                            <a href="/user/auditDeclaration?userId=${risk.value.userId}&&riskRating=2">高风险</a>
                     </div>
 
                 </li>
