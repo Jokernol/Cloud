@@ -18,17 +18,16 @@ import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.RiskPlace;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.LoginUser;
+import se.edu.badgateway.pojo.DTO.RegistUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
 import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
 import se.edu.badgateway.service.ChatService;
-import se.edu.badgateway.pojo.DTO.*;
 import se.edu.badgateway.service.InfoService;
 import se.edu.badgateway.service.PlaceService;
 import se.edu.badgateway.service.RiskDataService;
 import se.edu.badgateway.utils.QRCodeUtil;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -159,12 +158,6 @@ public class SimpleTest {
         riskDataMapper.insert(riskData);
     }
 
-    @Test
-    public void testGetAllRiskDataDto(){
-        List<RiskDataDTO> riskDataDTOList=new LinkedList<RiskDataDTO>();
-        Map<UserDTO, RiskDataDTO> map = riskDataService.getAllRiskDataDto();
-        System.out.println(map);
-    }
 
     @Test
     public void testGetChetRecords(){

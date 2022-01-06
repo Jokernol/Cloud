@@ -13,7 +13,7 @@
                     </a>
                     <div class="media-body">
                         <h5 class="mt-0 mb-1">申请内容<small></small></h5>
-                            七天内是否发烧:${risk.value.temperature}  近日身体状况:${risk.value.bodySituation} 今日通过地点: ${risk.value.}
+                            七天内是否发烧:${risk.value.temperature}  近日身体状况:${risk.value.bodySituation} 今日通过地点: ${risk.value}
                     </div>
 
                 </li>
