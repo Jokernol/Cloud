@@ -10,6 +10,8 @@ import javax.annotation.Resource;
 
 import se.edu.badgateway.pojo.DO.User;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +25,16 @@ public class ChatService {
     @Resource
     private UserMapper userMapper;
 
+    //得到聊天记录
     public List<Chat> getChatRecords(int senderId,int receiverId){
         List<Chat> chats = chatMapper.selectList(new QueryWrapper<Chat>()
                                                     .eq("sender_id",senderId)
                                                     .eq("receiver_id",receiverId)
-                                                    .orderByDesc("time") );
+                        .or().eq("sender_id",receiverId).eq("receiver_id",senderId)
+                                                    .orderByAsc("time") );
         return chats;
     }
-
+    //未读消息数量
     public Integer getMsgNum(int receiverId){
 
         Integer num= Math.toIntExact(chatMapper.selectCount(new QueryWrapper<Chat>()
@@ -38,6 +42,8 @@ public class ChatService {
                                                                 .eq("is_read",0)));
         return  num;
     }
+
+    //管理员获得未读消息列表
     public List<User> getFollowUsers(){
         List<Chat> senderIds= (chatMapper.selectList(new QueryWrapper<Chat>()
                                                         .select("sender_id")
@@ -63,5 +69,10 @@ public class ChatService {
         chatMapper.update(chat, updateWrapper);
 
 
+    }
+
+    public void addChat(Chat chat){
+        chat.setTime(LocalDateTime.now());
+        chatMapper.insert(chat);
     }
 }

@@ -18,10 +18,7 @@ import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.IndexHighRiskPeople;
 import se.edu.badgateway.pojo.DTO.RegistUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
-import se.edu.badgateway.service.InfoService;
-import se.edu.badgateway.service.PlaceService;
-import se.edu.badgateway.service.RiskDataService;
-import se.edu.badgateway.service.UserService;
+import se.edu.badgateway.service.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +32,9 @@ import java.util.UUID;
 @RequestMapping("/user")
 public class UserController {
 
+
+    @Autowired
+    ChatService chatService;
 
     @Resource
     InfoService infoService;
@@ -135,10 +135,12 @@ public class UserController {
 
 
     @GetMapping("/index")
-    public ModelAndView toIndex(ModelAndView modelAndView,HttpSession session){
+    public ModelAndView toIndex(RedirectAttributes attributes,ModelAndView modelAndView,HttpSession session){
 
         User user = (User) session.getAttribute("user");
         if (user != null){
+
+            modelAndView.addObject("notReadNum",chatService.getMsgNum(user.getId()));
             modelAndView.addObject("infoList",infoService.getInfoList());
             if(user.getType() == 0 ){
                 modelAndView.setViewName("users/admin");
@@ -146,8 +148,8 @@ public class UserController {
                 modelAndView.setViewName("users/index");
             }
         }else   {
-            modelAndView.addObject("msg","info");
-            modelAndView.addObject("info","请先登录");
+            attributes.addFlashAttribute("msg","info");
+            attributes.addFlashAttribute("info","请先登录");
             modelAndView.setViewName("redirect:/session/login");
         }
         return modelAndView;

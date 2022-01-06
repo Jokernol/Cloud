@@ -76,6 +76,27 @@
             <section class="stats mr-4">
                 <%@ include file="../shared/stats.jsp"%>
             </section>
+            <br>
+            <hr>
+
+            <h4>待处理事件</h4>
+            <br>
+            <hr>
+            <c:if test="${requestScope.notReadNum != 0}">
+                <a href="/chat/userList">
+
+                    <div style="float:left">
+                        待回消息
+                    </div>
+                    <div style="float: right">
+            <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
+      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center"> ${requestScope.notReadNum}</span>
+            </span>
+                    </div>
+                </a>
+                <br>
+                <hr>
+            </c:if>
         </aside>
 
     </div>

@@ -48,27 +48,34 @@
             <h4>待处理事件</h4>
             <br>
             <hr>
-            <c:if test="${chatNum != 0}">
-                <div style="float:left">
-                    <a href="chat/userList">待回消息</a>
-                </div>
-                <div style="float: right">
+            <c:if test="${requestScope.notReadNum != 0}">
+                <a href="/chat/userList">
+
+                    <div style="float:left">
+                       待回消息
+                    </div>
+                    <div style="float: right">
             <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
-      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center"> 12</span>
+      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center"> ${requestScope.notReadNum}</span>
             </span>
-                </div>
+                    </div>
+                </a>
                 <br>
                 <hr>
             </c:if>
             <c:if test="${chatNum != 0}">
-                <div style="float:left">
-                    <a href="chat/userList">待处理申报</a>
-                </div>
-                <div style="float: right">
+                <a href="/riskData/riskList">
+
+                    <div style="float:left">
+                        待处理申报
+                    </div>
+                    <div style="float: right">
             <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
       <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center"> 12</span>
             </span>
-                </div>
+                    </div>
+                </a>
+                <hr>
             </c:if>
         </aside>
     </div>

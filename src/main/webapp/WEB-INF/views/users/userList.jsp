@@ -16,7 +16,7 @@
                         <li class="media mt-4 mb-4">
 
                             <img class="mr-3" src="../../../public/static/Avatar/${user.id}.jpg" onerror="this.src='../../../public/static/Avatar/fang.jpg'" alt="{{ $user->name }}" width=32>
-                            <a href="/chat/chat">
+                            <a href="/chat/chat/${user.id}">
                                     ${user.name}
                             </a>
 
@@ -24,8 +24,12 @@
                                 <h5 class="mt-0 mb-1">${info.title}<small>${info.time}</small></h5>
                                     ${info.description}
                             </div>
-                            <form action="/chat/chat/{id}" method="get" onsubmit="return confirm('即将进入聊天');">
-                                <button type="submit" class="btn btn-sm btn-primary">探访</button>
+                            <form action="/chat/chat/${user.id}" onsubmit="return confirm('即将进入聊天');">
+                                <button type="submit" class="btn btn-sm btn-outline-primary">探访</button>
+                            </form>
+                            |
+                            <form action="/chat/chat/${user.id}" onsubmit="return confirm('是否修改该用户风险等级');">
+                                <button type="submit" class="btn btn-sm btn-primary">修改风险等级</button>
                             </form>
                         </li>
                     </ul>

@@ -42,5 +42,14 @@
 
     setTimeout(msgHid,2000);
 </script>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("html, body").animate({
+            scrollTop: $('html, body').get(0).scrollHeight
+        }, 1000);
+    });
+</script>
 </body>
 </html>
