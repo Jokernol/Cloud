@@ -34,16 +34,14 @@ public class RiskDataService {
 
     }
 
-    public Map<UserDTO, RiskDataDTO> getAllRiskDataDto(){
+    public Map<UserDTO, RiskData> getAllRiskDataDto(){
         List<RiskData> riskDataList = riskDataMapper.selectList(new QueryWrapper<RiskData>().eq("status", 0));
-        Map<UserDTO, RiskDataDTO> map = new HashMap<>();
+        Map<UserDTO, RiskData> map = new HashMap<>();
         for (RiskData riskData : riskDataList) {
             User user = userMapper.selectById(riskData.getUserId());
             UserDTO userDTO = new UserDTO();
-            RiskDataDTO riskDataDTO = new RiskDataDTO();
             BeanUtils.copyProperties(user, userDTO);
-            BeanUtils.copyProperties(riskData, riskDataDTO);
-            map.put(userDTO, riskDataDTO);
+            map.put(userDTO, riskData);
         }
         return map;
     }
