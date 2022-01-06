@@ -122,30 +122,12 @@ public class SimpleTest {
         System.out.println(riskDataService.getAllRiskDataDto());
     }
 
-    @Test
-    public void testAddPlace(){
-        RiskPlace riskPlace =new RiskPlace();
-        RiskPlaceDTO riskPlaceDTO=new RiskPlaceDTO("red","123","2222","123");
-        org.springframework.beans.BeanUtils.copyProperties(riskPlaceDTO, riskPlace);
-        System.out.println(riskPlace);
-        riskPlaceMapper.insert(riskPlace);
-    }
-
-    @Test
-    public void testDeletePlace(){
-        RiskPlaceDTO riskPlaceDTO=new RiskPlaceDTO("22","22","22","yellow");
-        Map<String, Object> map = new HashMap<>();
-        map.put("x",riskPlaceDTO.getX());
-        map.put("y",riskPlaceDTO.getY());
-        riskPlaceMapper.deleteByMap(map);
-    }
 
     @Test
     public void testgetIndexRiskPlace(){
         PlaceService placeService =new PlaceService();
-        List<RiskPlaceDTO> riskPlaceDTOS= placeService.getIndexRiskPlace();
+        List<RiskPlace> riskPlaceDTOS= placeService.getIndexRiskPlace();
         System.out.println(riskPlaceDTOS);
-
     }
 
 
@@ -161,7 +143,7 @@ public class SimpleTest {
     @Test
     public void testGetAllRiskDataDto(){
         List<RiskDataDTO> riskDataDTOList=new LinkedList<RiskDataDTO>();
-        Map<UserDTO, RiskDataDTO> map = riskDataService.getAllRiskDataDto();
+        Map<User, RiskData> map = riskDataService.getAllRiskDataDto();
         System.out.println(map);
     }
 

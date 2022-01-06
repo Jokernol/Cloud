@@ -43,7 +43,6 @@ public class ChatController {
 
         List<Chat> chatList =  chatService.getChatRecords(user.getId(),id);
 
-        System.out.println(chatList);
         modelAndView.addObject("chatList",chatList);
 
         modelAndView.setViewName("chat/chats");
@@ -70,6 +69,18 @@ public class ChatController {
 
         modelAndView.setViewName("redirect:/chat/chat/"+id);
 
+        return modelAndView;
+    }
+
+    @RequestMapping("/userList")
+    public ModelAndView userList(RedirectAttributes attributes,ModelAndView modelAndView,HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if (user == null ){
+            modelAndView.setViewName("redirect:/user/index");
+            return modelAndView;
+        }
+        modelAndView.addObject("userList",chatService.getFollowUsers());
+        modelAndView.setViewName("users/userList");
         return modelAndView;
     }
 

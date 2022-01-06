@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 public class RiskPlace {
     private int id;
     private String level;
-    private String x;
-    private String y;
+    private Double X;
+    private Double Y;
     private String intro;
 
 

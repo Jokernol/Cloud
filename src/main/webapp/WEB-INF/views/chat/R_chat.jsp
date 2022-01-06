@@ -9,7 +9,7 @@
 </span>
         </div>
         <a>
-            <img src="../../../public/static/Avatar/${sessionScope.user.id}.jpg" onerror="this.src='/upload/static/Avatar/default.jpg'" alt="{{ Auth::user()->name }}" class="mr-3 gravatar"/>
+            <img src="../../../public/static/Avatar/${sessionScope.user.id}.jpg" onerror="this.src='../../../public/static/Avatar/fang.jpg'" alt="{{ Auth::user()->name }}" class="mr-3 gravatar"/>
             <h5 class="mt-0 mb-1" style="color: black">${sessionScope.user.name}</h5>
         </a>
     </div>

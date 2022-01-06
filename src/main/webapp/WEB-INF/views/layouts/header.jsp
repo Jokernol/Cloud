@@ -17,9 +17,12 @@
             <c:choose>
                 <c:when test="${sessionScope.user != null}">
 <%--                    <li class="nav-item"><a class="nav-link" href="/concern/idols/${sessionScope.user.id}">推荐</a></li>--%>
-
                     <c:if test="${sessionScope.user.type == 0}">
+                        <li class="nav-item"><a class="nav-link" href="/user/highUser">高风险用户列表</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/userList">用户列表</a></li>
+                    </c:if>
+                    <c:if test="${sessionScope.user.type == 1 }">
+                        <li class="nav-item"><a class="nav-link" href="/chat/chat/1">联系社区管理人员</a></li>
                     </c:if>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,7 +42,7 @@
                 </c:when>
                 <c:otherwise>
                     <li class="nav-item"><a class="nav-link" href="/user/to_fang">帮助</a></li>
-                    <li class="nav-item" ><a class="nav-link" href="/user/to_login">登录</a></li>
+                    <li class="nav-item" ><a class="nav-link" href="/session/login">登录</a></li>
                 </c:otherwise>
             </c:choose>
         </ul>

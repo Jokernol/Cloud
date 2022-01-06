@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import se.edu.badgateway.pojo.DO.RiskData;
+import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
 import se.edu.badgateway.pojo.DTO.UserDTO;
 import se.edu.badgateway.service.RiskDataService;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
@@ -30,20 +32,21 @@ public class RiskDataController {
     @GetMapping("riskList")
     public ModelAndView riskList(ModelAndView modelAndView){
         modelAndView.setViewName("RiskData/RiskList");
-        Map<UserDTO, RiskData> map =  riskDataService.getAllRiskDataDto();
+        Map<User, RiskData> map =  riskDataService.getAllRiskDataDto();
         modelAndView.addObject("riskList",map);
         return modelAndView;
     }
 
-    @GetMapping("/add")
-    public ModelAndView toRiskData() {
-        return new ModelAndView("RiskData/appQRCode");
-    }
-
-    @PostMapping("/add/{userId}")
-    public ModelAndView addRiskData(RiskDataDTO riskDataDTO) {
+    @PostMapping("/add")
+    public ModelAndView addRiskData(ModelAndView modelAndView,HttpSession session, RiskDataDTO riskDataDTO) {
+        User user =(User)session.getAttribute("user");
+        if (user ==null){
+            modelAndView.setViewName("redirect:/user/index");
+            return modelAndView;
+        }
+        riskDataDTO.setUserId(user.getId());
         riskDataService.declareRiskData(riskDataDTO);
-        return new ModelAndView("redirect:userHome");
+        return new ModelAndView("redirect:/user/index");
     }
 
     @GetMapping("getAllRiskData")

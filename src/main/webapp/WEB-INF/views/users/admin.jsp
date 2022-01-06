@@ -1,5 +1,3 @@
-<%@ page import="java.time.LocalDate" %>
-<%@ page import="se.edu.badgateway.pojo.DO.Info" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -18,7 +16,6 @@
             <hr>
             <c:forEach items="${requestScope.infoList}" var="info" >
                 <ul class="list-unstyled">
-
                     <li class="media mt-4 mb-4">
                         <a href="">
                             <img src="../../../public/static/Avatar/1.jpg" onerror="this.src='../../../public/static/1.jpg'" alt="{{ $user->name }}" class="mr-3 gravatar"/>
@@ -42,14 +39,14 @@
             <section class="stats mt-2">
                 <%@ include file="../shared/stats.jsp"%>
             </section>
-
             <hr>
-
+            <a class="btn-sm btn btn-outline-warning" href="/riskPlace/allAddress">风险地区管理</a>
+            <hr>
             <h4>待处理事件</h4>
             <br>
             <hr>
             <c:if test="${requestScope.notReadNum != 0}">
-                <a href="/chat/userList">
+                <a href="/chat/userList" class="btn btn-sm btn-outline-success" >
 
                     <div style="float:left">
                        待回消息
@@ -64,8 +61,7 @@
                 <hr>
             </c:if>
             <c:if test="${chatNum != 0}">
-                <a href="/riskData/riskList">
-
+                <a href="/riskData/riskList" class="btn btn-sm btn-outline-dark">
                     <div style="float:left">
                         待处理申报
                     </div>
