@@ -43,6 +43,8 @@ public class ChatController {
 
         List<Chat> chatList =  chatService.getChatRecords(user.getId(),id);
 
+        chatService.checkNews(user.getId(),id);
+
         modelAndView.addObject("chatList",chatList);
 
         modelAndView.setViewName("chat/chats");

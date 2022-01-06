@@ -18,8 +18,20 @@
                             <img class="mr-3" src="../../../public/static/Avatar/${user.id}.jpg" onerror="this.src='../../../public/static/Avatar/fang.jpg'" alt="{{ $user->name }}" width=32>
                             <a href="/chat/chat/${user.id}">
                                     ${user.name}
-                            </a>
-
+                            </a>/
+                            <c:choose>
+                                <c:when test="${user.riskRating == 1 }">
+                                    <input class="btn btn-sm btn-warning" size="2" value="未审批">
+                                </c:when>
+                                <c:otherwise>
+                                    <c:if test="${user.riskRating ==2 }">
+                                        <input  class="btn btn-sm btn-danger" size="2" value="高风险">
+                                    </c:if>
+                                    <c:if test="${user.riskRating ==0 }">
+                                        <input  class="btn btn-sm btn-success" size="2" value="低风险">
+                                    </c:if>
+                                </c:otherwise>
+                            </c:choose>
                             <div class="media-body">
                                 <h5 class="mt-0 mb-1">${info.title}<small>${info.time}</small></h5>
                                     ${info.description}

@@ -53,6 +53,7 @@ public class RiskDataService {
         UpdateWrapper<RiskData> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("user_id",userId);
         RiskData riskData =new RiskData();
+        riskData.setUserId(userId);
         riskData.setStatus(1);
         riskDataMapper.update(riskData,updateWrapper);
     }

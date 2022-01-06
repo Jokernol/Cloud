@@ -11,7 +11,7 @@
             <div class="card-body">
                 <h6 style="color: #ed969e ">(注意:带*号为必填信息)</h6>
 
-                <form method="POST" action="${pageContext.request.contextPath}/riskData/add/">
+                <form method="POST" action="${pageContext.request.contextPath}/riskData/add">
 
                     <div class="form-group">
                         <label>*近7日是否有发烧情况</label>

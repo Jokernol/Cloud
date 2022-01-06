@@ -2,14 +2,17 @@
 <%@ taglib prefix="rapid" uri="http://www.rapid-framework.org.cn/rapid" %>
 <rapid:override name="content">
 
+  <style type="text/css">
+    .bg{
+      background-image: url("../../../public/static/su/1.jpg");
+    }
+  </style>
   <div class="offset-md-9 col-md-4" style="margin-top: 5vh" >
     <div class="card ">
       <div class="card-header">
         <h5>登录</h5>
       </div>
       <div class="card-body">
-
-
         <form method="POST" action="/session/login">
           <div class="form-group">
             <label for="loginName">账号</label>
@@ -37,5 +40,9 @@
       </div>
     </div>
   </div>
+  <a href="#" onclick="fun()">ssss</a>
+  <script type="text/javascript">
+      document.body.style.background = "../../../public/static/su/1.jpg";
+  </script>
 </rapid:override>
 <%@include file="../layouts/default.jsp"%>

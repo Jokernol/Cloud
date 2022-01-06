@@ -43,6 +43,7 @@ public class RiskDataController {
             return modelAndView;
         }
         riskDataDTO.setUserId(user.getId());
+        System.out.println(riskDataDTO);
         riskDataService.declareRiskData(riskDataDTO);
         return new ModelAndView("redirect:/user/index");
     }

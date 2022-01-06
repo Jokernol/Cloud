@@ -61,10 +61,12 @@ public class ChatService {
         return users;
     }
 
-    public void checkNews(int receiverId){
+    public void checkNews(int receiverId,int senderId){
         UpdateWrapper<Chat> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq("receiver_Id",receiverId);
+        updateWrapper.eq("receiver_Id",receiverId).eq("sender_id",senderId);
         Chat chat = new Chat();
+        chat.setReceiverId(receiverId);
+        chat.setSenderId(senderId);
         chat.setIsRead(1);
         chatMapper.update(chat, updateWrapper);
 

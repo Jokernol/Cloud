@@ -45,7 +45,6 @@
             <h4>待处理事件</h4>
             <br>
             <hr>
-            <c:if test="${requestScope.notReadNum != 0}">
                 <a href="/chat/userList" class="btn btn-sm btn-outline-success" >
 
                     <div style="float:left">
@@ -57,22 +56,17 @@
             </span>
                     </div>
                 </a>
-                <br>
-                <hr>
-            </c:if>
-            <c:if test="${chatNum != 0}">
                 <a href="/riskData/riskList" class="btn btn-sm btn-outline-dark">
                     <div style="float:left">
                         待处理申报
                     </div>
                     <div style="float: right">
             <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
-      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center"> 12</span>
+      <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center">${requestScope.notDealRiskData}</span>
             </span>
                     </div>
                 </a>
                 <hr>
-            </c:if>
         </aside>
     </div>
 </rapid:override>

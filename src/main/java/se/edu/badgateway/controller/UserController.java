@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import se.edu.badgateway.mapper.RiskDataMapper;
+import se.edu.badgateway.mapper.RiskPlaceMapper;
 import se.edu.badgateway.mapper.UserMapper;
+import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.RegistUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
@@ -42,6 +45,9 @@ public class UserController {
 
     @Autowired
     private PlaceService placeService;
+
+    @Autowired
+    private RiskDataMapper riskDataMapper;
 
     @Autowired
     private RiskDataService riskDataService;
@@ -81,7 +87,7 @@ public class UserController {
     @GetMapping("/userList")
     public ModelAndView userList(ModelAndView modelAndView){
         //List<IndexHighRiskPeople> users = userService.getAllHighRiskPeople();
-        List<User> users = userMapper.selectList(null);
+        List<User> users = userMapper.selectList(new QueryWrapper<User>().ne("id",1));
         modelAndView.addObject("userList",users);
         modelAndView.setViewName("users/userList");
         return modelAndView;
@@ -110,7 +116,7 @@ public class UserController {
     }
 
     @RequestMapping("auditDeclaration/{userId}")
-    public ModelAndView auditDeclaration(ModelAndView modelAndView, @PathVariable("userId") Integer userId, @Param("riskRating") Integer riskRating){
+    public ModelAndView auditDeclaration(ModelAndView modelAndView,@PathVariable("userId") Integer userId, @Param("riskRating") Integer riskRating){
         userService.auditDeclaration(userId,riskRating);
         modelAndView.setViewName("redirect:/riskData/riskList");
         return modelAndView;
@@ -127,10 +133,14 @@ public class UserController {
             modelAndView.addObject("allRiskPlace",placeService.getAllRiskPlaceNum());
             modelAndView.addObject("highRiskPlace",placeService.getHighRiskPlaceNum());
             modelAndView.addObject("lowRiskPlace",placeService.getLowRiskPlaceNum());
-            modelAndView.addObject("HighRiskPeopleNum",userService.getAllHighPeopleNum());
             if(user.getType() == 0 ){
                 modelAndView.setViewName("users/admin");
             }else if(user.getType() == 1){
+                int i = 0;
+                if (riskDataMapper.selectCount(new QueryWrapper<RiskData>().eq("user_id",user.getId())) == 0 ){
+                    i = -1;
+                }
+                modelAndView.addObject("i",i);
                 modelAndView.setViewName("users/index");
             }
         }else   {

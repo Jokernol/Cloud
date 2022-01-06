@@ -68,6 +68,17 @@
     })
     map.add(circle);
     </c:forEach>
+
+    var markers2= new AMap.Marker({
+      position : new AMap.LngLat(120.019398,30.214428),
+      title : '浙江科技学院',
+      icon : '../../../public/static/icon/2.png',
+      anchor : 'bottom-center',
+      clickable : true,
+    });
+
+    map.add(markers2);
+
   </script>
 </rapid:override>
 <%@include file="../layouts/default.jsp"%>

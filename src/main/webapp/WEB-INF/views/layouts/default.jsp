@@ -16,11 +16,8 @@
     <style type="text/css">
         .imglist li{float:left;display:inline;}
     </style>
-
-
 </head>
-<body>
-
+<body class="bg">
 <%@ include file="header.jsp"%>
 <div class="container">
     <div class="offset-md-12 col-md-12">
