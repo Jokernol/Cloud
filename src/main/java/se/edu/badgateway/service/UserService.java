@@ -59,7 +59,7 @@ public class UserService {
         user.setId(userId);
         user.setRiskRating(riskRating);
         userMapper.updateById(user);
-        riskDataService.changeRiskDataStatus(userId);
+        //riskDataService.changeRiskDataStatus(userId);
         switch (riskRating) {
             case 0: qrCodeService.encodeGreen(userId); break;
             case 2: qrCodeService.encodeRed(userId); break;

@@ -1,18 +1,14 @@
 package se.edu.badgateway.service;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import se.edu.badgateway.mapper.RiskDataMapper;
 import se.edu.badgateway.mapper.UserMapper;
-import se.edu.badgateway.pojo.DO.Chat;
 import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
-import se.edu.badgateway.pojo.DTO.UserDTO;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -37,29 +33,27 @@ public class RiskDataService {
 
     }
 
-    public Map<User, RiskData> getAllRiskDataDto(){
-
-
     public long getRiskDataDtoNum(){
-        long num =riskDataMapper.selectCount(new QueryWrapper<RiskData>().eq("status","0"));
-        return num;
+        return riskDataMapper.selectCount(new QueryWrapper<RiskData>().eq("status","0"));
     }
 
-    public Map<UserDTO, RiskDataDTO> getAllRiskDataDto(){
+    public Map<User, RiskData> getAllRiskDataDto(){
         List<RiskData> riskDataList = riskDataMapper.selectList(new QueryWrapper<RiskData>().eq("status", 0));
         Map<User, RiskData> map = new HashMap<>();
+
         for (RiskData riskData : riskDataList) {
             User user = userMapper.selectById(riskData.getUserId());
             map.put(user, riskData);
         }
+
         return map;
     }
 
-    public void changeRiskDataStatus(Integer userId){
-        UpdateWrapper<RiskData> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq("user_id",userId);
-        RiskData riskData =new RiskData();
-        riskData.setStatus(1);
-        riskDataMapper.update(riskData,updateWrapper);
-    }
+//    public void changeRiskDataStatus(Integer userId){
+//        UpdateWrapper<RiskData> updateWrapper = new UpdateWrapper<>();
+//        updateWrapper.eq("user_id",userId);
+//        RiskData riskData =new RiskData();
+//        riskData.setStatus(1);
+//        riskDataMapper.update(riskData,updateWrapper);
+//    }
 }
