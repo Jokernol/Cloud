@@ -6,16 +6,12 @@ import lombok.SneakyThrows;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.edu.badgateway.mapper.UserMapper;
 import se.edu.badgateway.pojo.DO.User;
-import se.edu.badgateway.pojo.DTO.IndexHighRiskPeople;
 import se.edu.badgateway.pojo.DTO.RegistUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
 import se.edu.badgateway.service.*;
@@ -26,7 +22,6 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Controller()
 @RequestMapping("/user")
@@ -66,16 +61,6 @@ public class UserController {
         return "users/create";
     }
 
-
-
-
-
-
-
-
-
-
-
     @PostMapping("/regist")
     public ModelAndView userRegist(RedirectAttributes attr, RegistUser registUser, ModelAndView modelAndView){
         userService.userRegist(registUser);
@@ -86,7 +71,6 @@ public class UserController {
         return modelAndView;
     }
 
-
     @PostMapping("uploadRiskData")
     public ModelAndView uploadRiskData(ModelAndView modelAndView,RiskDataDTO riskDataDTO){
         riskDataService.declareRiskData(riskDataDTO);
@@ -94,30 +78,43 @@ public class UserController {
         return modelAndView;
     }
 
-
     @GetMapping("/userList")
     public ModelAndView userList(ModelAndView modelAndView){
-        List<IndexHighRiskPeople> users = userService.getAllHighRiskPeople();
+        //List<IndexHighRiskPeople> users = userService.getAllHighRiskPeople();
+        List<User> users = userMapper.selectList(null);
         modelAndView.addObject("userList",users);
         modelAndView.setViewName("users/userList");
         return modelAndView;
     }
 
+    @GetMapping("/highUserList")
+    public ModelAndView highUserList(ModelAndView modelAndView){
+        List<User> users = userMapper.selectList(new QueryWrapper<User>().eq("risk_rating", 2));
+        modelAndView.addObject("userList",users);
+        modelAndView.setViewName("users/userList");
+        return modelAndView;
+    }
 
+    @RequestMapping("changeRiskRating/{userId}")
+    public ModelAndView changeRiskDating(ModelAndView modelAndView, @PathVariable("userId") Integer userId, @Param("riskRating") Integer riskRating){
+        userService.auditDeclaration(userId,riskRating);
+        modelAndView.setViewName("redirect:/user/userList");
+        return modelAndView;
+    }
 
+    @RequestMapping("changeHighRiskRating/{userId}")
+    public ModelAndView changeHighRiskDating(ModelAndView modelAndView, @PathVariable("userId") Integer userId, @Param("riskRating") Integer riskRating){
+        userService.auditDeclaration(userId,riskRating);
+        modelAndView.setViewName("redirect:/user/highUserList");
+        return modelAndView;
+    }
 
-
-
-
-
-    @RequestMapping("auditDeclaration")
-    public ModelAndView auditDeclaration(ModelAndView modelAndView, @Param("userId") Integer userId,@Param("riskRating") Integer riskRating){
+    @RequestMapping("auditDeclaration/{userId}")
+    public ModelAndView auditDeclaration(ModelAndView modelAndView, @PathVariable("userId") Integer userId, @Param("riskRating") Integer riskRating){
         userService.auditDeclaration(userId,riskRating);
         modelAndView.setViewName("redirect:/riskData/riskList");
         return modelAndView;
     }
-
-
 
     @GetMapping("/index")
     public ModelAndView toIndex(RedirectAttributes attributes,ModelAndView modelAndView,HttpSession session){

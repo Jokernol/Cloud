@@ -1,6 +1,7 @@
 package se.edu.badgateway.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +31,6 @@ public class RiskDataService {
         BeanUtils.copyProperties(riskDataDTO, riskData);
 
         riskDataMapper.insert(riskData);
-
     }
 
     public long getRiskDataDtoNum(){
@@ -49,11 +49,11 @@ public class RiskDataService {
         return map;
     }
 
-//    public void changeRiskDataStatus(Integer userId){
-//        UpdateWrapper<RiskData> updateWrapper = new UpdateWrapper<>();
-//        updateWrapper.eq("user_id",userId);
-//        RiskData riskData =new RiskData();
-//        riskData.setStatus(1);
-//        riskDataMapper.update(riskData,updateWrapper);
-//    }
+    public void changeRiskDataStatus(Integer userId){
+        UpdateWrapper<RiskData> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("user_id",userId);
+        RiskData riskData =new RiskData();
+        riskData.setStatus(1);
+        riskDataMapper.update(riskData,updateWrapper);
+    }
 }

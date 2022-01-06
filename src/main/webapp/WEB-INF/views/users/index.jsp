@@ -4,46 +4,42 @@
 <rapid:override name="content">
     <div class="row" style="margin-top: 5vh">
         <div class="col-md-8">
-
-
             <section>
-
                 <c:choose>
-                <c:when test="${sessionScope.user.riskRating == 1 }">
-                    <div class="alert alert-danger">
-                        <strong>提示:</strong> 您还为申请小区疫情码，请申请申报风险等级，在此期间切勿随意走动。
-                    </div>
-                    <br>
-                    <a href="/riskData/evaluate">
-                        <label class="form-control btn btn-info" style="width: 200px;" >申请</label>
-                    </a>
-                    <hr>
-
-                </c:when>
-                <c:otherwise>
-                    <c:if test="${sessionScope.user.riskRating == 2 }">
+                    <c:when test="${sessionScope.user.riskRating == 1 }">
                         <div class="alert alert-danger">
-                            <strong>提示:</strong> 您的申报仍在审批中，如有工作人员探访请配合人员工作(如有需要，右上角可联系社区管理人员)
+                            <strong>提示:</strong> 您还未申请小区疫情码，请申请申报风险等级，在此期间切勿随意走动。
                         </div>
                         <br>
-                    </c:if>
-                    <c:if test="${sessionScope.user.riskRating >= 2 && sessionScope.user.healthCodeType == 1}">
-                        <div class="alert alert-warning">
-                            <strong>提示:</strong> 您的风险等级大于中级，请居家隔离，风险降低后可外出
-                        </div>
-                        <br>
-                    </c:if>
-                    <c:if test="${sessionScope.user.riskRating == 0}">
-                        <div class="alert alert-success">
-                            <strong>提示:</strong> 您的风险较低，但出现请注意安全，请避开高风险地区(本系统可查看风险分布)
-                        </div>
-                        <br>
-                    </c:if>
-                    <a href="${pageContext.request.contextPath}/public/static/qrcode/${sessionScope.user.id}.jpg">
-                        <label class="form-control btn btn-info" style="width: 200px;" >查看/下载二维码</label>
-                    </a>
-                </c:otherwise>
+                        <a href="/riskData/evaluate">
+                            <label class="form-control btn btn-info" style="width: 200px;" >申请</label>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <c:if test="${sessionScope.user.riskRating == 2 }">
+                            <div class="alert alert-danger">
+                                <strong>提示:</strong> 您的申报仍在审批中，如有工作人员探访请配合人员工作(如有需要，右上角可联系社区管理人员)
+                            </div>
+                            <br>
+                        </c:if>
+                        <c:if test="${sessionScope.user.riskRating >= 2 && sessionScope.user.healthCodeType == 1}">
+                            <div class="alert alert-warning">
+                                <strong>提示:</strong> 您的风险等级大于中级，请居家隔离，风险降低后可外出
+                            </div>
+                            <br>
+                        </c:if>
+                        <c:if test="${sessionScope.user.riskRating == 0}">
+                            <div class="alert alert-success">
+                                <strong>提示:</strong> 您的风险较低，但出现请注意安全，请避开高风险地区(本系统可查看风险分布)
+                            </div>
+                            <br>
+                        </c:if>
+                    </c:otherwise>
                 </c:choose>
+                <a href="${pageContext.request.contextPath}/public/static/qrcode/${sessionScope.user.id}.jpg">
+                    <label class="form-control btn btn-info" style="width: 200px;" >查看/下载二维码</label>
+                </a>
+                <hr>
             </section>
             <h4>最近通知</h4>
             <hr>

@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
 import net.sf.cglib.beans.BeanCopier;
 import org.springframework.stereotype.Component;
-import se.edu.badgateway.mapper.RiskDataMapper;
 import se.edu.badgateway.mapper.UserMapper;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.IndexHighRiskPeople;
@@ -22,9 +21,6 @@ import java.util.Map;
 public class UserService {
     @Resource
     private UserMapper userMapper;
-
-    @Resource
-    private RiskDataMapper riskDataMapper;
 
     @Resource
     QRCodeService qrCodeService;
@@ -48,8 +44,6 @@ public class UserService {
         return true;
     }
 
-
-
     public List<IndexHighRiskPeople> getAllHighRiskPeople(){
         return userMapper.getHighRiskPeople();
     }
@@ -59,12 +53,16 @@ public class UserService {
         user.setId(userId);
         user.setRiskRating(riskRating);
         userMapper.updateById(user);
-        //riskDataService.changeRiskDataStatus(userId);
+
+        riskDataService.changeRiskDataStatus(userId);
         switch (riskRating) {
             case 0: qrCodeService.encodeGreen(userId); break;
             case 2: qrCodeService.encodeRed(userId); break;
         }
     }
+
+
+
 
     public Integer getAllHighPeopleNum(){
         return Math.toIntExact(userMapper.selectCount(new QueryWrapper<User>()

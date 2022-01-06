@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RiskDataDTO {
+    private int id;
     private String temperature;
     private String bodySituation;
     private String viaPlace;

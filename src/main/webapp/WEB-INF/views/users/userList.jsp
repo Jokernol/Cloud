@@ -30,9 +30,9 @@
                                 修改风险等级
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/user/edit" onclick="return confirm('确定设为低风险吗');">低风险</a>
+                                <a class="dropdown-item" href="/user/changeRiskRating/${user.id}?riskRating=0" onclick="return confirm('确定设为低风险吗');">低风险</a>
 
-                                <a class="dropdown-item" href="/user/edit" onclick="return confirm('确定设为高风险吗');">高风险</a>
+                                <a class="dropdown-item" href="/user/changeRiskRating/${user.id}?riskRating=2" onclick="return confirm('确定设为高风险吗');">高风险</a>
                             </div>
                         </li>
                     </ul>

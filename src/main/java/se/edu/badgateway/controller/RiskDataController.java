@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
-import se.edu.badgateway.pojo.DTO.UserDTO;
 import se.edu.badgateway.service.RiskDataService;
 
 import javax.annotation.Resource;
@@ -20,7 +19,6 @@ import java.util.Map;
 public class RiskDataController {
     @Resource
     RiskDataService riskDataService;
-
 
     //申请重新评估风险等级
     @GetMapping("evaluate")
