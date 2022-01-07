@@ -67,6 +67,7 @@
                 <%@ include file="../shared/stats.jsp"%>
             </section>
             <br>
+            <a class="btn-sm btn btn-outline-warning" href="/riskPlace/allAddress">查看风险地区</a>
             <hr>
 
             <h4>待处理事件</h4>

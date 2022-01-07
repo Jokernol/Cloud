@@ -131,14 +131,7 @@ public class SimpleTest {
     }
 
 
-    @Test
-    public  void  testDeclareRiskData(){
-        RiskData riskData = new RiskData();
-        RiskDataDTO riskDataDTO =new RiskDataDTO("30","30","30",1);
-        org.springframework.beans.BeanUtils.copyProperties(riskDataDTO, riskData);
 
-        riskDataMapper.insert(riskData);
-    }
 
     @Test
     public void testGetAllRiskDataDto(){
