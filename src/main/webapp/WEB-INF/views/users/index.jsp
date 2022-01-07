@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <section>
                 <c:choose>
-                    <c:when test="${requestScope.user.healthCodeType == 1 }">
+                    <c:when test="${sessionScope.user.healthCodeType==1}">
                         <div class="alert alert-danger">
                             <strong>提示:</strong> 您还未申请小区疫情码，请申请申报风险等级，在此期间切勿随意走动。
                         </div>

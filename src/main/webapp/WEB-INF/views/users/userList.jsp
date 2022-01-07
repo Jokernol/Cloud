@@ -41,7 +41,7 @@
                             </div>
                             <a class="nav-link  btn btn-sm  btn-outline-primary" href="/chat/chat/${user.id}" onclick="return confirm('即将进入聊天')">探访</a>
                             |
-                            <c:if test="${user.healthCodeType != 1}" >
+                            <c:if test="${user.healthCodeType == 2}" >
                                 <a class="nav-link dropdown-toggle btn btn-sm  btn-outline-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     修改风险等级
                                 </a>
