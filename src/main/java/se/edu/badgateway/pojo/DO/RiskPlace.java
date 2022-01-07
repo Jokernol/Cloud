@@ -13,6 +13,4 @@ public class RiskPlace {
     private Double X;
     private Double Y;
     private String intro;
-
-
 }

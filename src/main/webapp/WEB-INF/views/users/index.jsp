@@ -28,7 +28,7 @@
                             </div>
                             <br>
                         </c:if>
-                        <c:if test="${sessionScope.user.riskRating == 0}">
+                        <c:if test="${requestScope.user.riskRating == 0}">
                             <div class="alert alert-success">
                                 <strong>提示:</strong> 您的风险较低，但出现请注意安全，请避开高风险地区(本系统可查看风险分布)
                             </div>

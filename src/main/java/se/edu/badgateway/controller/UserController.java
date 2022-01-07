@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.edu.badgateway.mapper.RiskDataMapper;
-import se.edu.badgateway.mapper.RiskPlaceMapper;
 import se.edu.badgateway.mapper.UserMapper;
 import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.User;
@@ -42,6 +41,9 @@ public class UserController {
 
     @Autowired
     private  UserService userService;
+
+    @Resource
+    QRCodeService qrCodeService;
 
     @Autowired
     private PlaceService placeService;
@@ -126,9 +128,15 @@ public class UserController {
     public ModelAndView toIndex(RedirectAttributes attributes,ModelAndView modelAndView,HttpSession session){
 
         User user = (User) session.getAttribute("user");
+        User newUser = userMapper.selectById(user.getId());
         if (user != null){
             modelAndView.addObject("notReadNum",chatService.getMsgNum(user.getId()));
-            modelAndView.addObject("user",userMapper.deleteById(user));
+            modelAndView.addObject("user", newUser);
+            if (newUser.getRiskRating() == 0) {
+                qrCodeService.encodeGreen(newUser.getId());
+            } else if (newUser.getRiskRating() == 2) {
+                qrCodeService.encodeRed(newUser.getId());
+            }
             modelAndView.addObject("notDealRiskData",riskDataService.getRiskDataDtoNum());
             modelAndView.addObject("infoList",infoService.getInfoList());
             modelAndView.addObject("allRiskPlace",placeService.getAllRiskPlaceNum());

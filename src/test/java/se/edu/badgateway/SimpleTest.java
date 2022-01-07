@@ -17,10 +17,9 @@ import se.edu.badgateway.pojo.DO.RiskData;
 import se.edu.badgateway.pojo.DO.RiskPlace;
 import se.edu.badgateway.pojo.DO.User;
 import se.edu.badgateway.pojo.DTO.LoginUser;
+import se.edu.badgateway.pojo.DTO.RegistUser;
 import se.edu.badgateway.pojo.DTO.RiskDataDTO;
-import se.edu.badgateway.pojo.DTO.RiskPlaceDTO;
 import se.edu.badgateway.service.ChatService;
-import se.edu.badgateway.pojo.DTO.*;
 import se.edu.badgateway.service.InfoService;
 import se.edu.badgateway.service.PlaceService;
 import se.edu.badgateway.service.RiskDataService;
@@ -128,16 +127,6 @@ public class SimpleTest {
         PlaceService placeService =new PlaceService();
         List<RiskPlace> riskPlaceDTOS= placeService.getIndexRiskPlace();
         System.out.println(riskPlaceDTOS);
-    }
-
-
-    @Test
-    public  void  testDeclareRiskData(){
-        RiskData riskData = new RiskData();
-        RiskDataDTO riskDataDTO =new RiskDataDTO("30","30","30",1);
-        org.springframework.beans.BeanUtils.copyProperties(riskDataDTO, riskData);
-
-        riskDataMapper.insert(riskData);
     }
 
     @Test
