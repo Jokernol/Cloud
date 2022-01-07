@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <section>
                 <c:choose>
-                    <c:when test="${requestScope.i == -1 }">
+                    <c:when test="${requestScope.user.healthCodeType == 1 }">
                         <div class="alert alert-danger">
                             <strong>提示:</strong> 您还未申请小区疫情码，请申请申报风险等级，在此期间切勿随意走动。
                         </div>
@@ -66,9 +66,10 @@
             <section class="stats mr-4">
                 <%@ include file="../shared/stats.jsp"%>
             </section>
-            <br>
             <hr>
-
+            <a class="btn-sm btn btn-outline-warning" href="/riskPlace/allAddress">风险地区查看</a>
+            <hr>
+            <br>
             <h4>待处理事件</h4>
             <br>
             <hr>
@@ -78,9 +79,11 @@
                     待回消息
                 </div>
                 <div style="float: right">
+                    <c:if test="${requestScope.notReadNum != 0}">
             <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
       <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center"> ${requestScope.notReadNum}</span>
             </span>
+                    </c:if>
                 </div>
             </a>
             <br>

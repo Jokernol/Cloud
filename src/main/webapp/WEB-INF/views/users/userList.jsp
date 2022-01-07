@@ -20,10 +20,13 @@
                                     ${user.name}
                             </a>/
                             <c:choose>
-                                <c:when test="${user.riskRating == 1 }">
-                                    <input class="btn btn-sm btn-warning" size="2" value="未审批">
+                                <c:when test="${user.healthCodeType == 1 }">
+                                    <input class="btn btn-sm btn-dark" size="2" value="未申请">
                                 </c:when>
                                 <c:otherwise>
+                                    <c:if test="${user.healthCodeType == 0}">
+                                        <input class="btn btn-sm btn-warning" size="2" value="未审批">
+                                    </c:if>
                                     <c:if test="${user.riskRating ==2 }">
                                         <input  class="btn btn-sm btn-danger" size="2" value="高风险">
                                     </c:if>
@@ -38,14 +41,16 @@
                             </div>
                             <a class="nav-link  btn btn-sm  btn-outline-primary" href="/chat/chat/${user.id}" onclick="return confirm('即将进入聊天')">探访</a>
                             |
-                            <a class="nav-link dropdown-toggle btn btn-sm  btn-outline-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                修改风险等级
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/user/changeRiskRating/${user.id}?riskRating=0" onclick="return confirm('确定设为低风险吗');">低风险</a>
+                            <c:if test="${user.healthCodeType != 1}" >
+                                <a class="nav-link dropdown-toggle btn btn-sm  btn-outline-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    修改风险等级
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/user/changeRiskRating/${user.id}?riskRating=0" onclick="return confirm('确定设为低风险吗');">低风险</a>
 
-                                <a class="dropdown-item" href="/user/changeRiskRating/${user.id}?riskRating=2" onclick="return confirm('确定设为高风险吗');">高风险</a>
-                            </div>
+                                    <a class="dropdown-item" href="/user/changeRiskRating/${user.id}?riskRating=2" onclick="return confirm('确定设为高风险吗');">高风险</a>
+                                </div>
+                            </c:if>
                         </li>
                     </ul>
 

@@ -52,6 +52,20 @@ public class UserService {
         User user =new User();
         user.setId(userId);
         user.setRiskRating(riskRating);
+        user.setHealthCodeType(2);
+        userMapper.updateById(user);
+        riskDataService.changeRiskDataStatus(userId);
+        switch (riskRating){
+            case 0: qrCodeService.encodeGreen(userId); break;
+            case 2: qrCodeService.encodeRed(userId); break;
+        }
+    }
+
+
+    public void auditDeclaration2(Integer userId, Integer riskRating){
+        User user =new User();
+        user.setId(userId);
+        user.setRiskRating(riskRating);
         userMapper.updateById(user);
         riskDataService.changeRiskDataStatus(userId);
         switch (riskRating) {
@@ -59,7 +73,6 @@ public class UserService {
             case 2: qrCodeService.encodeRed(userId); break;
         }
     }
-
 
 
 

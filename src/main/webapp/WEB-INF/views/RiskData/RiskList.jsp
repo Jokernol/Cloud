@@ -19,7 +19,7 @@
                     <a class="nav-link  btn btn-sm  btn-outline-primary" href="/chat/chat/${risk.value.userId}"onclick="return confirm('即将进入聊天')">探访</a>
                     |
                     <a class="nav-link dropdown-toggle btn btn-sm  btn-outline-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        修改风险等级
+                        处理
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/user/auditDeclaration/${risk.value.userId}?riskRating=0" onclick="return confirm('确定设为低风险吗');">低风险</a>

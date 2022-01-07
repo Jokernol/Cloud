@@ -4,7 +4,7 @@
 <rapid:override name="content">
     <div class="row" style="margin-top: 5vh">
         <div class="col-md-8">
-            <label>发布全体通知</label>
+            <label><i class="bi bi-megaphone" style="font-size: 25px"></i></label>
             <form action="/Info/add" method="POST">
                 <input type="text" class="form-control" placeholder="标题..." aria-describedby="sizing-addon1" name="title">
                 <textarea class="form-control" rows="3" placeholder="通知..." name="description"></textarea>
@@ -26,7 +26,7 @@
                             ${info.description}
                         </div>
                         <form action="/Info/delete/${info.id}" method="POST" onsubmit="return confirm('确定删除?');">
-                            <button type="submit" class="btn btn-sm btn-danger">删除</button>
+                            <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash" style="font-size: 25px"></i></button>
                         </form>
                     </li>
                 </ul>
@@ -51,9 +51,11 @@
                        待回消息
                     </div>
                     <div style="float: right">
+                        <c:if test="${requestScope.notReadNum != 0}">
             <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
       <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center"> ${requestScope.notReadNum}</span>
             </span>
+                        </c:if>
                     </div>
                 </a>
                 <a href="/riskData/riskList" class="btn btn-sm btn-outline-dark">
@@ -61,9 +63,11 @@
                         待处理申报
                     </div>
                     <div style="float: right">
+                        <c:if test="${requestScope.notDealRiskData != 0}">
             <span style="border-radius: 50%;    height: 20px;    width: 20px;    display: inline-block;    background: #f30303;      vertical-align: top;">
       <span style="display: block;    color: #FFFFFF;    height: 20px;    line-height: 20px;    text-align: center">${requestScope.notDealRiskData}</span>
             </span>
+                        </c:if>
                     </div>
                 </a>
                 <hr>

@@ -103,7 +103,7 @@ public class UserController {
 
     @RequestMapping("changeRiskRating/{userId}")
     public ModelAndView changeRiskDating(ModelAndView modelAndView, @PathVariable("userId") Integer userId, @Param("riskRating") Integer riskRating){
-        userService.auditDeclaration(userId,riskRating);
+        userService.auditDeclaration2(userId,riskRating);
         modelAndView.setViewName("redirect:/user/userList");
         return modelAndView;
     }
