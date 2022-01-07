@@ -128,6 +128,7 @@ public class UserController {
         User user = (User) session.getAttribute("user");
         if (user != null){
             modelAndView.addObject("notReadNum",chatService.getMsgNum(user.getId()));
+            modelAndView.addObject("user",userMapper.deleteById(user));
             modelAndView.addObject("notDealRiskData",riskDataService.getRiskDataDtoNum());
             modelAndView.addObject("infoList",infoService.getInfoList());
             modelAndView.addObject("allRiskPlace",placeService.getAllRiskPlaceNum());
